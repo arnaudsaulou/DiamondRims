@@ -37,7 +37,7 @@
 
         case 3:
             // inclure ici la page de connexion
-            include_once('pages/TestBrand.inc.php');
+            include_once('pages/Home.inc.php');
             break;
 
         case 4:
