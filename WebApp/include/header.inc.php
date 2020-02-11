@@ -16,15 +16,17 @@
     <link rel="stylesheet" type="text/css" href="css/resetStyle.css"/>
 
     <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css?h=5d82dc634b5de4f55a7740845949031a">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
 
     <!-- Custom styles for this template -->
-    <link href="css/stylesheet.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/styles.min.css">
 
     <!-- Font -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.1.1/aos.css">
 
 </head>
 
@@ -34,10 +36,10 @@
             <div
                 class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="nav navbar-nav mx-auto">
-                    <li class="nav-item" role="presentation"><a class="nav-link active" href="index.html">Home</a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="about.html">About us</a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="products.html">Products</a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="store.html">Store</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link active" href="index.php?page=0">Home</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="index.php?page=1">Products</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="index.php?page=2">About us</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="index.php?page=3">Connection</a></li>
                 </ul>
         </div>
         </div>
