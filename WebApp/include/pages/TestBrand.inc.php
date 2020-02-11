@@ -24,6 +24,47 @@
       <?php
         }
       ?>
-      
+
+  </tbody>
+</table>
+
+
+<hr>
+<br>
+<br>
+<br>
+<hr>
+
+<table>
+    <thead>
+        <tr>
+            <th colspan  ="3">Models</th>
+        </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>modelId</td>
+        <td>modelName</td>
+        <td>modelHorsePower</td>
+        <td>modelDescription</td>
+        <td>brandId</td>
+      </tr>
+
+      <?php
+        $modelList = $modelManager->getAllModels();
+
+        foreach ($modelList as $model) {
+      ?>
+          <tr>
+            <td style ="border: 1px solid #333;"><?php echo $model->getModelId() ?></td>
+            <td style ="border: 1px solid #333;"><?php echo $model->getModelName() ?></td>
+            <td style ="border: 1px solid #333;"><?php echo $model->getModelHorsePower() ?></td>
+            <td style ="border: 1px solid #333;"><?php echo $model->getModelDescription() ?></td>
+            <td style ="border: 1px solid #333;"><?php echo $model->getBrandId() ?></td>
+          </tr>
+      <?php
+        }
+      ?>
+
   </tbody>
 </table>

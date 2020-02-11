@@ -5,11 +5,11 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="description" content="Online luxury car dealer">
+    <meta name="author" content="The best team">
 
     <!--Title / favicon-->
-    <title>Projet GMP</title>
+    <title>Diamond Rims</title>
     <link href="ressources/favicon.ico" rel="icon" type="image/x-icon" />
 
     <!--Reset CSS-->
@@ -20,9 +20,6 @@
 
     <!-- Custom styles for this template-->
     <link href="css/stylesheet.css" rel="stylesheet">
-
-    <!-- Custom fonts for this template-->
-    <link href="packages/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
 
 </head>
 

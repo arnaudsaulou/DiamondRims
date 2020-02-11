@@ -56,8 +56,8 @@ class BrandManager
         $req->bindValue(':brandId', $brandId, PDO::PARAM_STR);
         $req->execute();
         $brand = new Brand($req->fetch(PDO::FETCH_OBJ));
-        return $brand;
         $req->closeCursor();
+        return $brand;
     }
 
     public function deleteBrandById($brandId) {

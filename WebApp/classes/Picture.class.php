@@ -1,8 +1,9 @@
 <?php
-class Brand {
-    private $brandId;
-    private $brandName;
-    private $brandDescription;
+class Picture {
+    private $pictureId;
+    private $pictureNum;
+    private $pictureDescription;
+    private $carId;
 
     /**
      * Retourne une nouvelle instance d'Attribue.
@@ -23,14 +24,17 @@ class Brand {
     {
         foreach ((array)$data as $attribut => $value) {
             switch ($attribut) {
-                case 'BRAND_ID':
-                    $this->setBrandId($value);
+                case 'PICTURE_ID':
+                    $this->setPictureId($value);
                     break;
-                case 'BRAND_NAME':
-                    $this->setBrandName($value);
+                case 'PICTURE_NUM':
+                    $this->setPictureNum($value);
                     break;
-                case 'BRAND_DESCRIPTION':
-                    $this->setBrandDescription($value);
+                case 'PICTURE_DESCRIPTION':
+                    $this->setPictureDescription($value);
+                    break;
+                case 'CAR_ID':
+                    $this->setCarId($value);
                     break;
                 default:
                   break;
@@ -42,54 +46,72 @@ class Brand {
      * Retourne l'ID de l'Utilisateur attribué à cette instance.
      * @return integer L'ID de l'Utilisateur attribué à cette instance.
      */
-    public function getBrandId()
+    public function getPictureId()
     {
-        return $this->brandId;
+        return $this->pictureId;
     }
 
     /**
      * Retourne l'ID du Sujet attribué à cette instance.
      * @return integer L'ID du Sujet attribué à cette instance.
      */
-    public function getBrandName()
+    public function getPictureNum()
     {
-        return $this->brandName;
+        return $this->pictureNum;
     }
 
     /**
      * Retourne la date d'attribution du sujet au sujet de cette instance.
      * @return string La date d'attribution du sujet au sujet de cette instance.
      */
-    public function getBrandDescription()
+    public function getPictureDescription()
     {
-        return $this->brandDescription;
+        return $this->pictureDescription;
+    }
+
+    /**
+     * Retourne la date d'attribution du sujet au sujet de cette instance.
+     * @return string La date d'attribution du sujet au sujet de cette instance.
+     */
+    public function getCarId()
+    {
+        return $this->carId;
     }
 
     /**
      * Modifie l'ID de l'Utilisateur attribué à cette instance.
      * @param integer $valeur Le nouvel ID de l'Utilisateur attribué à cette instance.
      */
-    public function setBrandId($value)
+    public function setPictureId($value)
     {
-        $this->brandId = $value;
+        $this->pictureId = $value;
     }
 
     /**
      * Modifie l'ID du Sujet attribué à cette instance.
      * @param integer $valeur Le nouvel ID du Sujet attribué à cette instance.
      */
-    public function setBrandName($value)
+    public function setPictureNum($value)
     {
-        $this->brandName = $value;
+        $this->pictureNum = $value;
+    }
+
+    /**
+     * Modifie l'ID du Sujet attribué à cette instance.
+     * @param integer $valeur Le nouvel ID du Sujet attribué à cette instance.
+     */
+    public function setPictureDescription($value)
+    {
+        $this->pictureDescription = $value;
     }
 
     /**
      * Modifie la date d'attribution du sujet de cette instance.
      * @param string $valeur La nouvelle date d'attribution du sujet de cette instance.
      */
-    public function setBrandDescription($value)
+    public function setCarId($value)
     {
-        $this->brandDescription = $value;
+        $this->carId = $value;
     }
 
 }
