@@ -39,7 +39,23 @@
                     <li class="nav-item" role="presentation"><a class="nav-link active" href="index.php?page=0">Home</a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link" href="index.php?page=1">Products</a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link" href="index.php?page=2">About us</a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="index.php?page=3">Connection</a></li>
+
+                    <?php
+                      if(isset($_SESSION['currentUser'])){
+                        $user = unserialize($_SESSION['currentUser']);
+                        if($user->getUserId() == 1){
+                    ?>
+                          <li class="nav-item" role="presentation"><a class="nav-link" href="index.php?page=4">Manage</a></li>
+                    <?php
+                        } else {
+                    ?>
+                          <li class="nav-item" role="presentation"><a class="nav-link" href="index.php?page=5">My account</a></li>
+                    <?php
+                        }
+                     ?>
+                    <?php } else { ?>
+                      <li class="nav-item" role="presentation"><a class="nav-link" href="index.php?page=3">Connection</a></li>
+                    <?php } ?>
                 </ul>
         </div>
         </div>

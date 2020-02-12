@@ -34,6 +34,11 @@
     include_once('pages/Connection.inc.php');
     break;
 
+    case 4:
+    // Page d'accueil
+    include_once('pages/TestBrand.inc.php');
+    break;
+
     // case 1:
     //     if ($_SESSION['droits'] == 1) {
     //         include("pages/afficherEtudiants.inc.php");
