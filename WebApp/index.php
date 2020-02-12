@@ -8,6 +8,7 @@ $db = new MyPDO();
 $brandManager = new BrandManager($db);
 $modelManager = new ModelManager($db);
 $pictureManager = new PictureManager($db);
+$carManager = new CarManager($db);
 
 require_once("include/header.inc.php");
 //require_once("include/menu.inc.php");

@@ -21,7 +21,7 @@
 
     case 1:
     // Page d'accueil
-    include_once('pages/About.inc.php');
+    include_once('pages/Products.inc.php');
     break;
 
     case 2:

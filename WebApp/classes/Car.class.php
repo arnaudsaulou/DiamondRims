@@ -83,7 +83,7 @@ class Car {
      */
     public function getCarPrice()
     {
-        return $this->CAR_PRICE;
+        return $this->carPrice;
     }
 
     /**
