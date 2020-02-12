@@ -31,10 +31,11 @@ class ModelManager
     }
 
 
-    public function getAllModels()
+    public function getAllModelsByBrand($brandId)
     {
       $modelList = array();
-      $req = $this->db->prepare("SELECT MODEL_ID,MODEL_NAME,MODEL_HORSE_POWER,MODEL_DESCRIPTION,BRAND_ID FROM model");
+      $req = $this->db->prepare("SELECT MODEL_ID,MODEL_NAME,MODEL_HORSE_POWER,MODEL_DESCRIPTION,BRAND_ID FROM model WHERE BRAND_ID = :brandId");
+      $req->bindValue(':brandId', $brandId, PDO::PARAM_STR);
       $req->execute();
       while ($model = $req->fetch(PDO::FETCH_OBJ)) {
           $modelList[] = new Model($model);
