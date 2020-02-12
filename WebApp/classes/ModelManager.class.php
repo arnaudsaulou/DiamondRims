@@ -53,7 +53,7 @@ class ModelManager
     public function getModelById($modelId)
     {
         $req = $this->db->prepare(
-            'SELECT MODEL_ID,MODEL_NAME,MODEL_HORSE_POWER,BRAND_DESCRIPTION,BRAND_ID FROM brand WHERE MODEL_ID = :modelId'
+            'SELECT MODEL_ID,MODEL_NAME,MODEL_HORSE_POWER,MODEL_DESCRIPTION,BRAND_ID FROM model WHERE MODEL_ID = :modelId'
         );
         $req->bindValue(':modelId', $modelId, PDO::PARAM_STR);
         $req->execute();
