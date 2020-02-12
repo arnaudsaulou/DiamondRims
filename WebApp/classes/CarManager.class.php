@@ -95,36 +95,15 @@ class CarManager
 
       switch ($nbArgs) {
         case 1:
-          $req = $this->db->prepare(
-            'SELECT c.CAR_ID, c.CAR_MILAGE, c.CAR_COLOR, c.CAR_PRICE, c.CAR_DESCRIPTION, c.MODEL_ID FROM car c
-            INNER JOIN model m ON c.MODEL_ID = m.MODEL_ID
-            INNER JOIN brand b ON m.BRAND_ID = b.BRAND_ID
-            WHERE b.BRAND_ID = :brandId'
-          );
-          $req->bindValue(':brandId', $filterArray[0], PDO::PARAM_STR);
+          $this->filterCarsByBrand($filterArray);
         break;
 
         case 2:
-          $req = $this->db->prepare(
-            'SELECT c.CAR_ID, c.CAR_MILAGE, c.CAR_COLOR, c.CAR_PRICE, c.CAR_DESCRIPTION, c.MODEL_ID FROM car c
-            INNER JOIN model m ON c.MODEL_ID = m.MODEL_ID
-            INNER JOIN brand b ON m.BRAND_ID = b.BRAND_ID
-            WHERE b.BRAND_ID = :brandId AND m.MODEL_ID = :modelId'
-          );
-          $req->bindValue(':brandId', $filterArray[0], PDO::PARAM_STR);
-          $req->bindValue(':modelId', $filterArray[1], PDO::PARAM_STR);
+          $this->filterCarsByModel($filterArray);
         break;
 
         case 3:
-        $req = $this->db->prepare(
-            'SELECT c.CAR_ID, c.CAR_MILAGE, c.CAR_COLOR, c.CAR_PRICE, c.CAR_DESCRIPTION, c.MODEL_ID FROM car c
-            INNER JOIN model m ON c.MODEL_ID = m.MODEL_ID
-            INNER JOIN brand b ON m.BRAND_ID = b.BRAND_ID
-            WHERE b.BRAND_ID = :brandId AND m.MODEL_ID = :modelId AND c.CAR_MILAGE <= :milage'
-          );
-          $req->bindValue(':brandId', $filterArray[0], PDO::PARAM_STR);
-          $req->bindValue(':modelId', $filterArray[1], PDO::PARAM_STR);
-          $req->bindValue(':milage', $filterArray[2], PDO::PARAM_STR);
+          $this->filterCarsByMilage($filterArray);
         break;
 
         default:
@@ -132,6 +111,46 @@ class CarManager
         break;
       }
       return filterCars($req);
+    }
+
+    public function filterCarsByBrand($filterArray) {
+      $req = $this->db->prepare(
+        'SELECT c.CAR_ID, c.CAR_MILAGE, c.CAR_COLOR, c.CAR_PRICE, c.CAR_DESCRIPTION, c.MODEL_ID FROM car c
+        INNER JOIN model m ON c.MODEL_ID = m.MODEL_ID
+        INNER JOIN brand b ON m.BRAND_ID = b.BRAND_ID
+        WHERE b.BRAND_ID = :brandId'
+      );
+      $req->bindValue(':brandId', $filterArray[0], PDO::PARAM_STR);
+
+      return $req;
+    }
+
+    public function filterCarsByModel($filterArray) {
+      $req = $this->db->prepare(
+        'SELECT c.CAR_ID, c.CAR_MILAGE, c.CAR_COLOR, c.CAR_PRICE, c.CAR_DESCRIPTION, c.MODEL_ID FROM car c
+        INNER JOIN model m ON c.MODEL_ID = m.MODEL_ID
+        INNER JOIN brand b ON m.BRAND_ID = b.BRAND_ID
+        WHERE b.BRAND_ID = :brandId AND m.MODEL_ID = :modelId'
+      );
+      $req->bindValue(':brandId', $filterArray[0], PDO::PARAM_STR);
+      $req->bindValue(':modelId', $filterArray[1], PDO::PARAM_STR);
+
+      return $req;
+    }
+
+
+    public function filterCarsByMilage($filterArray) {
+      $req = $this->db->prepare(
+          'SELECT c.CAR_ID, c.CAR_MILAGE, c.CAR_COLOR, c.CAR_PRICE, c.CAR_DESCRIPTION, c.MODEL_ID FROM car c
+          INNER JOIN model m ON c.MODEL_ID = m.MODEL_ID
+          INNER JOIN brand b ON m.BRAND_ID = b.BRAND_ID
+          WHERE b.BRAND_ID = :brandId AND m.MODEL_ID = :modelId AND c.CAR_MILAGE <= :milage'
+        );
+        $req->bindValue(':brandId', $filterArray[0], PDO::PARAM_STR);
+        $req->bindValue(':modelId', $filterArray[1], PDO::PARAM_STR);
+        $req->bindValue(':milage', $filterArray[2], PDO::PARAM_STR);
+
+        return $req;
     }
 
     public function filterCars($req) {
