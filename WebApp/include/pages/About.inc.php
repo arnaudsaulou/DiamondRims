@@ -1,14 +1,18 @@
 <h1 class="text-center text-white d-none d-lg-block site-heading">
   <span class="text-primary site-heading-upper mb-3" style="font-size: 65px;color: rgb(244,172,21);">
-    <img src="assets/img/DiamondRimsLogo.png?h=c2b6338f275b71b605c85dd9525085e7" style="width: 83px;">&nbsp;DIAMOND RIMS&nbsp;
+    <img src="assets/img/DiamondRimsLogo.png" style="width: 83px;" alt="Diamond rims logo">
+    &nbsp;DIAMOND RIMS&nbsp;
   </span>
-  <span class="site-heading-lower" style="font-size: 41px;">DIAMOND IS ETERNAL.
-    <br>SO IS OUR CRAFTMANSHIP.<br>
+  <span class="site-heading-lower" style="font-size: 41px;">
+    DIAMOND IS ETERNAL.<br>SO IS OUR CRAFTMANSHIP.<br>
   </span>
 </h1>
 <section class="page-section about-heading">
   <div class="container">
-    <img class="img-fluid rounded about-heading-img mb-3 mb-lg-0" src="assets/img/marvin-meyer-Bnzgkj0Lt3E-unsplash.jpg?h=da228d6a8dac8ac12276c8b40d72079e" style="background-image: url(&quot;assets/img/marvin-meyer-Bnzgkj0Lt3E-unsplash.jpg?h=da228d6a8dac8ac12276c8b40d72079e&quot;);">
+    <img
+      class="img-fluid rounded about-heading-img mb-3 mb-lg-0"
+      src="assets/img/BugattiChironMansory.jpg"
+      alt="Bugatti Chiron Mansory">
     <div class="about-heading-content">
       <div class="row">
         <div class="col-lg-10 col-xl-9 mx-auto">

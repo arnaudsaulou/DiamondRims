@@ -1,6 +1,6 @@
 <h1 class="text-center text-white d-none d-lg-block site-heading">
   <span class="text-primary site-heading-upper mb-3" style="font-size: 65px;color: rgb(244,172,21);">
-    <img src="assets/img/DiamondRimsLogo.png?h=c2b6338f275b71b605c85dd9525085e7" style="width: 83px;">
+    <img src="assets/img/DiamondRimsLogo.png" style="width: 83px;" alt="Diamond rims logo">
     &nbsp;DIAMOND RIMS&nbsp;
   </span>
   <span class="site-heading-lower" style="font-size: 41px;">
@@ -61,7 +61,11 @@
     <!-- End: Carousel Hero -->
     <section class="page-section clearfix">
         <div class="container">
-            <div class="intro"><img class="img-fluid intro-img mb-3 mb-lg-0 rounded" src="assets/img/kevin-langlais-yCg-sSDyxsE-unsplash.jpg?h=116a9d775f106c636eeb534c1bc38b3e" style="background-image: url(&quot;assets/img/kevin-langlais-yCg-sSDyxsE-unsplash.jpg?h=116a9d775f106c636eeb534c1bc38b3e&quot;);">
+            <div class="intro">
+              <img
+                class="img-fluid intro-img mb-3 mb-lg-0 rounded"
+                src="assets/img/MercedessF1Staff.jpg"
+                alt="Mercedess F1 staff">
                 <div class="intro-text left-0 text-centerfaded p-5 rounded bg-faded text-center" style="opacity: 1;">
                     <h2 class="section-heading mb-4"><span class="section-heading-upper">international recognition</span><span class="section-heading-lower">worth<br>thinking</span></h2>
                     <p class="mb-3">Owning a Car isn't about the most the expensive one or the most luxurious. It's about a car that appeals to you on a personal scale. We've tried here in Diamond Rims to carefully select the car that would appeal to you on a personal

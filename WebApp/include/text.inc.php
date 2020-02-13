@@ -36,7 +36,7 @@
 
     case 4:
     // Page d'accueil
-    include_once('pages/TestBrand.inc.php');
+    include_once('pages/Manage.inc.php');
     break;
 
     // case 1:
