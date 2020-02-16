@@ -61,7 +61,7 @@ class BrandManager
     }
 
     public function updateBrandById($updatedBrand) {
-      $req = $this->db->prepare("UPDATE brand SET BRAND_NAME=:brandName,BRAND_DESCRIPTION=:brandDescription WHERE :brandId");
+      $req = $this->db->prepare("UPDATE brand SET BRAND_NAME=:brandName, BRAND_DESCRIPTION=:brandDescription WHERE BRAND_ID=:brandId");
       $req->bindValue(':brandName', $updatedBrand->getBrandName(), PDO::PARAM_STR);
       $req->bindValue(':brandDescription', $updatedBrand->getBrandDescription(), PDO::PARAM_STR);
       $req->bindValue(':brandId', $updatedBrand->getBrandId(), PDO::PARAM_STR);

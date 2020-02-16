@@ -63,6 +63,22 @@ class ModelManager
         return $model;
     }
 
+
+    public function updateModelById($updatedModel) {
+      $req = $this->db->prepare(
+        "UPDATE model SET
+        MODEL_NAME=:modelName,
+        MODEL_HORSE_POWER=:modelHorsePower,
+        MODEL_DESCRIPTION=:modelDescription
+        WHERE MODEL_ID=:modelId");
+      $req->bindValue(':modelName', $updatedModel->getModelName(), PDO::PARAM_STR);
+      $req->bindValue(':modelHorsePower', $updatedModel->getModelHorsePower(), PDO::PARAM_STR);
+      $req->bindValue(':modelDescription', $updatedModel->getModelDescription(), PDO::PARAM_STR);
+      $req->bindValue(':modelId', $updatedModel->getModelId(), PDO::PARAM_STR);
+      $req->execute();
+      $req->closeCursor();
+    }
+
     public function deleteModelById($modelId) {
       $req = $this->db->prepare("DELETE FROM model WHERE MODEL_ID = :modelId");
       $req->bindValue(':modelId', $modelId, PDO::PARAM_STR);

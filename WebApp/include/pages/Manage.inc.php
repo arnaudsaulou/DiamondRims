@@ -9,11 +9,39 @@
   </div>
   <div class="float-right col-md-10">
     <section class="float-left py-5 col-md-12" style="background-color: #ffffff;">
-      <h1 class="display-4">Brands</h1>
+
+      <?php
+
+      if (isset($_GET['option'])){
+
+        switch ($_GET['option']) {
+          case 0:
+          ?><h1 class="display-4">Brands</h1><?php
+          break;
+
+          case 1:
+          ?><h1 class="display-4">Models</h1><?php
+          break;
+
+          case 2:
+          ?><h1 class="display-4">Cars</h1><?php
+          break;
+
+          default:
+          //Should never happen
+          ?><h1 class="display-4">Brands</h1><?php
+          break;
+        }
+      } else {
+        ?><h1 class="display-4">Brands</h1><?php
+      }
+
+      ?>
+
       <hr/>
       <div class="col-md-10 offset-md-1">
 
-<?php
+        <?php
         if (isset($_GET['option'])){
 
           switch ($_GET['option']) {
@@ -22,7 +50,7 @@
             break;
 
             case 1:
-            include_once('ManageBrands.inc.php');
+            include_once('ManageModels.inc.php');
             break;
 
             case 2:
@@ -35,9 +63,9 @@
             break;
           }
         } else {
-           include_once('ManageBrands.inc.php');
+          include_once('ManageBrands.inc.php');
         }
-?>
+        ?>
 
       </div>
     </section>
