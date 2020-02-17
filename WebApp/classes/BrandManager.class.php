@@ -60,13 +60,21 @@ class BrandManager
         return $brand;
     }
 
+    public function updateBrandById($updatedBrand) {
+      $req = $this->db->prepare("UPDATE brand SET BRAND_NAME=:brandName, BRAND_DESCRIPTION=:brandDescription WHERE BRAND_ID=:brandId");
+      $req->bindValue(':brandName', $updatedBrand->getBrandName(), PDO::PARAM_STR);
+      $req->bindValue(':brandDescription', $updatedBrand->getBrandDescription(), PDO::PARAM_STR);
+      $req->bindValue(':brandId', $updatedBrand->getBrandId(), PDO::PARAM_STR);
+      $req->execute();
+      $req->closeCursor();
+    }
+
     public function deleteBrandById($brandId) {
       $req = $this->db->prepare("DELETE FROM brand WHERE BRAND_ID = :brandId");
       $req->bindValue(':brandId', $brandId, PDO::PARAM_STR);
       $req->execute();
       $req->closeCursor();
     }
-
 
 }
 
