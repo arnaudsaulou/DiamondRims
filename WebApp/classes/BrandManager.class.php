@@ -20,9 +20,8 @@ class BrandManager
     public function addBrand($brand)
     {
         $req = $this->db->prepare(
-            'INSERT INTO brand(BRAND_ID,BRAND_NAME,BRAND_DESCRIPTION)
-            VALUES (:brandId,:brandName,:brandDescription)');
-        $req->bindValue(':brandId', $brand->getBrandId(), PDO::PARAM_STR);
+            'INSERT INTO brand(BRAND_NAME,BRAND_DESCRIPTION)
+            VALUES (:brandName,:brandDescription)');
         $req->bindValue(':brandName', $brand->getBrandName(), PDO::PARAM_STR);
         $req->bindValue(':brandDescription', $brand->getBrandDescription(), PDO::PARAM_STR);
         $req->execute();

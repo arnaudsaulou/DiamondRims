@@ -1,35 +1,94 @@
 <?php
 
 //Handle the model update
-if(isset($_POST['modelNameInput']) && isset($_POST['modelDescriptionInput']) && isset($_POST['modelHorsePowerInput'])){
+if(isset($_POST['modelNameInput']) && isset($_POST['modelDescriptionInput']) &&
+isset($_POST['modelHorsePowerInput']) && isset($_GET['action'])){
 
-  //Create Model object with POST values
-  $updatedModel= new Model(
-    array(
-      "MODEL_ID"=>$_GET['id'],
-      "MODEL_NAME"=>$_POST['modelNameInput'],
-      "MODEL_HORSE_POWER"=>$_POST['modelHorsePowerInput'],
-      "MODEL_DESCRIPTION"=>$_POST['modelDescriptionInput']
-    )
-  );
+  if($_GET['action'] == 0) {
 
-  //Call manager to update model in the database
-  $modelManager->updateModelById($updatedModel);
+    //Create Model object with POST values
+    $newModel= new Model(
+      array(
+        "MODEL_NAME"=>$_POST['modelNameInput'],
+        "MODEL_HORSE_POWER"=>$_POST['modelHorsePowerInput'],
+        "MODEL_DESCRIPTION"=>$_POST['modelDescriptionInput'],
+        "BRAND_ID" => $_GET['brand']
+      )
+    );
+
+    //Call manager to create new brand in the database
+    $modelManager->addModel($newModel);
+
+  } elseif ($_GET['action'] == 1) {
+    //Create Model object with POST values
+    $updatedModel= new Model(
+      array(
+        "MODEL_ID"=>$_GET['id'],
+        "MODEL_NAME"=>$_POST['modelNameInput'],
+        "MODEL_HORSE_POWER"=>$_POST['modelHorsePowerInput'],
+        "MODEL_DESCRIPTION"=>$_POST['modelDescriptionInput']
+      )
+    );
+
+    //Call manager to update model in the database
+    $modelManager->updateModel($updatedModel);
+  }
 
   //Redirect the user
-  header("location:./index.php?page=4&option=1");
-  exit;
+  //exit(header("Location:./index.php?page=4&option=1&brand=",$_GET['brand']));
+  ?><script> window.location.href="./index.php?page=4&option=1";  </script><?php
+
 }
 
 
 //If a special action to a special model has been asked
-if(isset($_GET['action']) && isset($_GET['id'])){
+if(isset($_GET['action'])){
 
-  //Update
-  if($_GET['action'] == 1) {
+  $brandName = $brandManager->getBrandById($_GET['brand'])->getBrandName();
+
+  //Add
+  if($_GET['action'] == 0) {
+
+    ?>
+
+    <h3 class="col-12 mb-4 mt-4">Add a new <?php echo $brandName; ?> model</h3>
+
+    <!--  Display add model form -->
+    <form class="col-md-12" action="index.php?page=4&option=1&action=0&brand=<?php echo $_GET['brand']; ?>" method="post">
+      <div class="form-group">
+        <label for="modelNameInput">Model name</label>
+        <input
+        type="text" class="form-control" id="modelNameInput" name="modelNameInput"
+        placeholder="Please enter a name for this model" required >
+      </div>
+
+      <div class="form-group">
+        <label for="modelDescriptionInput">Model description</label>
+        <textarea
+        class="form-control" id="modelDescriptionInput" rows="3" name="modelDescriptionInput"
+        placeholder="Please enter a description for this model" required></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="modelHorsePowerInput">Model horse power</label>
+        <input
+        type="number" class="form-control" id="modelHorsePowerInput" name="modelHorsePowerInput"
+        placeholder="Please enter the horse power of this model" min="1" max="2500"
+        required >
+      </div>
+
+      <button type="submit" class="btn btn-primary col-sm-2 offset-sm-10">VALIDATE</button>
+    </form>
+
+
+    <?php
+    //Update
+  } elseif($_GET['action'] == 1 && isset($_GET['id'])) {
 
     $model = $modelManager->getModelById($_GET['id']);
     ?>
+
+    <h3 class="col-12 mb-4 mt-4">Update a <?php echo $brandName; ?> model</h3>
 
     <!--  Display update model form -->
     <form class="col-md-12" action="index.php?page=4&option=1&action=1&id=<?php echo $_GET['id'] ?>" method="post">
@@ -50,7 +109,7 @@ if(isset($_GET['action']) && isset($_GET['id'])){
       </div>
 
       <div class="form-group">
-        <label for="modelHorsePowerInput">Model description</label>
+        <label for="modelHorsePowerInput">Model horse power</label>
         <input
         type="number" class="form-control" id="modelHorsePowerInput" name="modelHorsePowerInput"
         placeholder="Please enter the horse power of this model" min="1" max="2500"
@@ -62,22 +121,18 @@ if(isset($_GET['action']) && isset($_GET['id'])){
     </form>
 
     <?php
-
-  }
-
-  //Delete
-  elseif($_GET['action'] == 2) {
+    //Delete
+  }elseif($_GET['action'] == 2 && isset($_GET['id'])) {
     //Call manager to delete model in the database
     $modelManager->deleteModelById($_GET['id']);
 
     //Redirect the user
-    header("location:./index.php?page=4&option=1");
-    exit;
-  }
-}
+    ?><script> window.location.href="./index.php?page=4&option=1";  </script><?php
 
-//View
-else {
+  }
+
+  //View
+} else {
 
   //If a brand has been specified
   if(isset($_GET['brand'])){
@@ -106,12 +161,12 @@ else {
             <td><?php echo $model->getModelDescription(); ?></td>
             <td><?php echo $model->getModelHorsePower(); ?>bhp</td>
             <td>
-              <a href="index.php?page=4&option=1&action=1&id=<?php echo $model->getModelId(); ?>">
+              <a href="index.php?page=4&option=1&action=1&brand=<?php echo $model->getBrandId(); ?>&id=<?php echo $model->getModelId(); ?>">
                 <img class="crudIcon" src="assets/icon/pencilIcon.png" alt="pencil icon">
               </a>
             </td>
             <td>
-              <a href="index.php?page=4&option=1&action=2&id=<?php echo $model->getModelId(); ?>">
+              <a href="index.php?page=4&option=1&action=2&brand=<?php echo $model->getBrandId(); ?>&id=<?php echo $model->getModelId(); ?>">
                 <img class="crudIcon" src="assets/icon/binIcon.png" alt="bin icon">
               </a>
             </td>

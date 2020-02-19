@@ -7,6 +7,24 @@ div {
   font-family: Raleway, sans-serif;
 }
 
+
+@-moz-document url-prefix() { /* Disable scrollbar Firefox */
+  html{
+    scrollbar-width: none;
+  }
+}
+
+body {
+  scrollbar-width: none; /* Also needed to disable scrollbar Firefox */
+  -ms-overflow-style: none;  /* Disable scrollbar IE 10+ */
+  overflow-y: scroll;
+}
+
+body::-webkit-scrollbar {
+  width: 0px;
+  background: transparent; /* Disable scrollbar Chrome/Safari/Webkit */
+}
+
 /* Home */
 
 .carousel-fade .carousel-item>img{
@@ -198,4 +216,23 @@ p.hero-subtitle{
 .crudIcon{
   width: 40px;
   height: 40px;
+}
+
+.manageBackground{
+  background-color: #ffffff;
+}
+
+.button5 {
+  padding: 0px;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+}
+
+.button5 h1 {
+  margin: 0px;
+}
+
+row .card-body{
+  padding: 0px;
 }

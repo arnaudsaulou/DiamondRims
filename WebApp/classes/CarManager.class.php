@@ -20,22 +20,39 @@ class CarManager
   public function addCar($car)
   {
     $req = $this->db->prepare(
-      'INSERT INTO car(CAR_ID,CAR_MILAGE,CAR_COLOR,CAR_PRICE,CAR_DESCRIPTION,MODEL_ID)
-      VALUES (:carId,:carMilage,:carColor,:carPrice,:carDescription,:carDescription)');
-      $req->bindValue(':carId', $car->getCarId(), PDO::PARAM_STR);
+      'INSERT INTO car(CAR_MILAGE,CAR_COLOR,CAR_PRICE,CAR_DESCRIPTION,MODEL_ID)
+      VALUES (:carMilage,:carColor,:carPrice,:carDescription,:modelId)');
       $req->bindValue(':carMilage', $car->getCarMilage(), PDO::PARAM_STR);
       $req->bindValue(':carColor', $car->getCarColor(), PDO::PARAM_STR);
       $req->bindValue(':carPrice', $car->getCarPrice(), PDO::PARAM_STR);
       $req->bindValue(':carDescription', $car->getCarDescription(), PDO::PARAM_STR);
-      $req->bindValue(':carDescription', $car->getModelId(), PDO::PARAM_STR);
+      $req->bindValue(':modelId', $car->getModelId(), PDO::PARAM_STR);
       $req->execute();
     }
 
 
-    public function getAllCars()
+    public function updateCar($updatedCar)
+    {
+      $req = $this->db->prepare(
+        'UPDATE car SET CAR_MILAGE=:carMilage,CAR_COLOR=:carColor,CAR_PRICE=:carPrice,CAR_DESCRIPTION=:carDescription,MODEL_ID=:modelId
+        WHERE CAR_ID = :carId');
+        $req->bindValue(':carMilage', $updatedCar->getCarMilage(), PDO::PARAM_STR);
+        $req->bindValue(':carColor', $updatedCar->getCarColor(), PDO::PARAM_STR);
+        $req->bindValue(':carPrice', $updatedCar->getCarPrice(), PDO::PARAM_STR);
+        $req->bindValue(':carDescription', $updatedCar->getCarDescription(), PDO::PARAM_STR);
+        $req->bindValue(':modelId', $updatedCar->getModelId(), PDO::PARAM_STR);
+        $req->bindValue(':carId', $updatedCar->getCarId(), PDO::PARAM_STR);
+        $req->execute();
+      }
+
+
+    public function getAllCarsByModel($modelId)
     {
       $carList = array();
-      $req = $this->db->prepare("SELECT CAR_ID,CAR_MILAGE,CAR_COLOR,CAR_PRICE,CAR_DESCRIPTION,MODEL_ID FROM car");
+      $req = $this->db->prepare(
+        'SELECT CAR_ID,CAR_MILAGE,CAR_COLOR,CAR_PRICE,CAR_DESCRIPTION,MODEL_ID FROM car WHERE MODEL_ID = :modelId '
+      );
+      $req->bindValue(':modelId', $modelId, PDO::PARAM_STR);
       $req->execute();
       while ($car = $req->fetch(PDO::FETCH_OBJ)) {
         $carList[] = new Car($car);
@@ -164,7 +181,7 @@ class CarManager
     }
 
     public function deleteCarById($carId) {
-      $req = $this->db->prepare("DELETE FROM car WHERE BRAND_ID = :carId");
+      $req = $this->db->prepare("DELETE FROM car WHERE CAR_ID = :carId");
       $req->bindValue(':carId', $carId, PDO::PARAM_STR);
       $req->execute();
       $req->closeCursor();

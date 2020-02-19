@@ -20,9 +20,8 @@ class ModelManager
     public function addModel($model)
     {
         $req = $this->db->prepare(
-            'INSERT INTO model(MODEL_ID, MODEL_NAME, MODEL_HORSE_POWER, MODEL_DESCRIPTION, BRAND_ID)
-            VALUES (:modelId,:modelName,:modelHorsePower,:modelDescription,:brandId)');
-        $req->bindValue(':modelId', $model->getModelId(), PDO::PARAM_STR);
+            'INSERT INTO model(MODEL_NAME, MODEL_HORSE_POWER, MODEL_DESCRIPTION, BRAND_ID)
+            VALUES (:modelName,:modelHorsePower,:modelDescription,:brandId)');
         $req->bindValue(':modelName', $model->getModelName(), PDO::PARAM_STR);
         $req->bindValue(':modelHorsePower', $model->getModelHorsePower(), PDO::PARAM_STR);
         $req->bindValue(':modelDescription', $model->getModelDescription(), PDO::PARAM_STR);
@@ -64,7 +63,7 @@ class ModelManager
     }
 
 
-    public function updateModelById($updatedModel) {
+    public function updateModel($updatedModel) {
       $req = $this->db->prepare(
         "UPDATE model SET
         MODEL_NAME=:modelName,

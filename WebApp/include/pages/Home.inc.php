@@ -70,7 +70,11 @@
                     <h2 class="section-heading mb-4"><span class="section-heading-upper">international recognition</span><span class="section-heading-lower">worth<br>thinking</span></h2>
                     <p class="mb-3">Owning a Car isn't about the most the expensive one or the most luxurious. It's about a car that appeals to you on a personal scale. We've tried here in Diamond Rims to carefully select the car that would appeal to you on a personal
                         level. Agerra Koegnisseg R or Bugatti Chiron ? Phantom II or Ferrari ? We've got them all ; now it's down to you to select one... Or maybe more?&nbsp;<br></p>
-                    <div class="mx-auto intro-button"><a class="btn btn-primary d-inline-block mx-auto btn-xl" role="button" data-bs-hover-animate="bounce" href="#" style="background-color: #454545;">Start the Experience</a></div>
+                    <div class="mx-auto intro-button">
+                      <a class="btn btn-primary d-inline-block mx-auto btn-xl" role="button" data-bs-hover-animate="bounce" href="#" style="background-color: #454545;">
+                        Start the Experience
+                      </a>
+                    </div>
                 </div>
             </div>
         </div>

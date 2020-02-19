@@ -32,7 +32,7 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-light navbar-expand-lg bg-dark py-lg-4" id="mainNav">
+    <nav class="navbar navbar-light navbar-expand-lg bg-dark py-lg-2" id="mainNav">
         <div class="container-fluid">
           <a class="navbar-brand text-uppercase d-lg-none text-expanded" href="#">Diamond Rims</a>
           <button data-toggle="collapse" data-target="#navbarResponsive" class="navbar-toggler" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">

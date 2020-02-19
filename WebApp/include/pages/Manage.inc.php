@@ -1,41 +1,169 @@
 <h1 class="text-center text-white d-none d-lg-block site-heading">
   <span class="text-primary site-heading-upper mb-3" style="font-size: 65px;color: rgb(244,172,21);">
-    <img src="assets/img/DiamondRimsLogo.png" style="width: 83px;" /> DIAMOND RIMS </span>
+    <img src="assets/img/DiamondRimsLogo.png" alt="Diamond Rims logo" style="width: 83px;" /> DIAMOND RIMS </span>
   </h1>
   <div class="float-left col-md-2 p-3 fill" style="background-color: rgba(230,167,86,0.9);">
-    <a href="index.php?page=4&option=0"><button class="btn btn-dark col-md-10 offset-md-1" type="button">BRANDS</button></a>
-    <a href="index.php?page=4&option=1"><button class="btn btn-dark col-md-10 offset-md-1 mt-3" type="button">MODELS</button></a>
-    <a href="index.php?page=4&option=2"><button class="btn btn-dark col-md-10 offset-md-1 mt-3" type="button">CARS</button></a>
+
+    <form class="mb-2" action="index.php?page=4&option=0" method="post">
+      <button class="btn btn-dark col-md-10 offset-md-1" type="submit">BRANDS</button>
+    </form>
+
+    <form class="mb-2" action="index.php?page=4&option=1" method="post">
+      <button class="btn btn-dark col-md-10 offset-md-1" type="submit">MODELS</button>
+    </form>
+
+    <form action="index.php?page=4&option=2" method="post">
+      <button class="btn btn-dark col-md-10 offset-md-1" type="submit">CARS</button>
+    </form>
+
   </div>
+
   <div class="float-right col-md-10">
-    <section class="float-left py-5 col-md-12" style="background-color: #ffffff;">
+
+    <section class="float-left py-5 col-md-12 manageBackground">
 
       <?php
-
       if (isset($_GET['option'])){
 
         switch ($_GET['option']) {
           case 0:
-          ?><h1 class="display-4">Brands</h1><?php
+          ?>
+
+          <div class="container">
+            <div class="row align-items-center">
+              <div class="col-3">
+                <div class="card-body">
+                  <p class="display-4">Brands</p>
+                </div>
+              </div>
+              <div class="col-1 offset-8">
+                <div class="card-body">
+                  <form action="index.php?page=4&option=0&action=0" method="post">
+                    <button class="btn btn-dark button5 align-middle" type="submit"><h1>+</h1></button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <?php
           break;
 
           case 1:
-          ?><h1 class="display-4">Models</h1><?php
+          ?>
+
+          <div class="container">
+            <div class="row align-items-center">
+              <div class="col-3">
+                <div class="card-body">
+                  <p class="display-4">Models</p>
+                </div>
+              </div>
+
+              <?php
+              if(isset($_GET['brand'])){
+                ?>
+
+                <div class="col-1 offset-8">
+                  <div class="card-body">
+                    <form action="index.php?page=4&option=1&action=0&brand=<?php echo $_GET['brand']; ?>" method="post">
+                      <button class="btn btn-dark button5 align-middle" type="submit"><h1>+</h1></button>
+                    </form>
+                  </div>
+                </div>
+
+                <?php
+              }
+              ?>
+
+            </div>
+          </div>
+
+          <?php
           break;
 
           case 2:
-          ?><h1 class="display-4">Cars</h1><?php
+          ?>
+
+          <div class="container">
+            <div class="row align-items-center">
+              <div class="col-3">
+                <div class="card-body">
+                  <p class="display-4">Cars</p>
+                </div>
+              </div>
+
+              <?php
+              if(isset($_GET['brand'])){
+                ?>
+
+                <div class="col-1 offset-8">
+                  <div class="card-body">
+                    <form action="index.php?page=4&option=2&action=0&brand=<?php echo $_GET['brand']; ?>" method="post">
+                      <button class="btn btn-dark button5 align-middle" type="submit"><h1>+</h1></button>
+                    </form>
+                  </div>
+                </div>
+
+                <?php
+              }
+              ?>
+
+            </div>
+          </div>
+
+          <?php
           break;
 
           default:
-          //Should never happen
-          ?><h1 class="display-4">Brands</h1><?php
+          ?>
+
+          <div class="container">
+            <div class="row align-items-center">
+              <div class="col-3">
+                <div class="card-body">
+                  <p class="display-4">Brands</p>
+                </div>
+              </div>
+              <div class="col-1 offset-8">
+                <div class="card-body">
+
+                  <form action="index.php?page=4&option=0&action=0" method="post">
+                    <button class="btn btn-dark button5 align-middle" type="submit"><h1>+</h1></button>
+                  </form>
+
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <?php
           break;
         }
       } else {
-        ?><h1 class="display-4">Brands</h1><?php
-      }
+        ?>
 
+        <div class="container">
+          <div class="row align-items-center">
+            <div class="col-3">
+              <div class="card-body">
+                <p class="display-4">Brands</p>
+              </div>
+            </div>
+            <div class="col-1 offset-8">
+              <div class="card-body">
+
+                <form action="index.php?page=4&option=0&action=0" method="post">
+                  <button class="btn btn-dark button5 align-middle" type="submit"><h1>+</h1></button>
+                </form>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <?php
+      }
       ?>
 
       <hr/>
@@ -54,7 +182,7 @@
             break;
 
             case 2:
-            include_once('ManageBrands.inc.php');
+            include_once('ManageCars.inc.php');
             break;
 
             default:

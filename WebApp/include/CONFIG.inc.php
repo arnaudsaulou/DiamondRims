@@ -4,7 +4,7 @@
 
 
 // Ce fichier doit être renommé en :
-//    config.inc.php
+//    CONFIG.inc.php
 //pour être pris en compte par l'Application
 
 // Leslignes contenant des XXXXX doivent être modifiés
