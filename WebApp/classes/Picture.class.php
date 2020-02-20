@@ -1,7 +1,7 @@
 <?php
 class Picture {
-    private $pictureId;
     private $pictureNum;
+    private $pictureName;
     private $pictureDescription;
     private $carId;
 
@@ -24,11 +24,11 @@ class Picture {
     {
         foreach ((array)$data as $attribut => $value) {
             switch ($attribut) {
-                case 'PICTURE_ID':
-                    $this->setPictureId($value);
-                    break;
                 case 'PICTURE_NUM':
                     $this->setPictureNum($value);
+                    break;
+                case 'PICTURE_NAME':
+                    $this->setPictureName($value);
                     break;
                 case 'PICTURE_DESCRIPTION':
                     $this->setPictureDescription($value);
@@ -43,21 +43,21 @@ class Picture {
     }
 
     /**
-     * Retourne l'ID de l'Utilisateur attribué à cette instance.
-     * @return integer L'ID de l'Utilisateur attribué à cette instance.
-     */
-    public function getPictureId()
-    {
-        return $this->pictureId;
-    }
-
-    /**
      * Retourne l'ID du Sujet attribué à cette instance.
      * @return integer L'ID du Sujet attribué à cette instance.
      */
     public function getPictureNum()
     {
         return $this->pictureNum;
+    }
+
+    /**
+     * Retourne l'ID du Sujet attribué à cette instance.
+     * @return integer L'ID du Sujet attribué à cette instance.
+     */
+    public function getPictureName()
+    {
+        return $this->pictureName;
     }
 
     /**
@@ -79,21 +79,21 @@ class Picture {
     }
 
     /**
-     * Modifie l'ID de l'Utilisateur attribué à cette instance.
-     * @param integer $valeur Le nouvel ID de l'Utilisateur attribué à cette instance.
-     */
-    public function setPictureId($value)
-    {
-        $this->pictureId = $value;
-    }
-
-    /**
      * Modifie l'ID du Sujet attribué à cette instance.
      * @param integer $valeur Le nouvel ID du Sujet attribué à cette instance.
      */
     public function setPictureNum($value)
     {
         $this->pictureNum = $value;
+    }
+
+    /**
+     * Modifie l'ID du Sujet attribué à cette instance.
+     * @param integer $valeur Le nouvel ID du Sujet attribué à cette instance.
+     */
+    public function setPictureName($value)
+    {
+        $this->pictureName = $value;
     }
 
     /**

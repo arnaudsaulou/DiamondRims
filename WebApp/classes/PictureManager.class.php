@@ -20,10 +20,10 @@ class PictureManager
     public function addPicture($picture)
     {
         $req = $this->db->prepare(
-            'INSERT INTO picture(PICTURE_ID, PICTURE_NUM, PICTURE_DESCRIPTION, CAR_ID)
-            VALUES (:pictureId,:pictureNum,:pictureDescription,:carId)');
-        $req->bindValue(':pictureId', $picture->getPictureId(), PDO::PARAM_STR);
+            'INSERT INTO picture(PICTURE_NUM, PICTURE_NAME, PICTURE_DESCRIPTION, CAR_ID)
+            VALUES (:pictureNum,:pictureName,:pictureDescription,:carId)');
         $req->bindValue(':pictureNum', $picture->getPictureNum(), PDO::PARAM_STR);
+        $req->bindValue(':pictureName', $picture->getPictureName(), PDO::PARAM_STR);
         $req->bindValue(':pictureDescription', $picture->getPictureDescription(), PDO::PARAM_STR);
         $req->bindValue(':carId', $picture->getCarId(), PDO::PARAM_STR);
         $req->execute();
@@ -32,7 +32,8 @@ class PictureManager
     public function getMainPictureByCarId($carId)
     {
       $pictureList = array();
-      $req = $this->db->prepare("SELECT PICTURE_ID, PICTURE_NUM, PICTURE_DESCRIPTION, CAR_ID FROM picture WHERE CAR_ID = :carId AND PICTURE_NUM = 1");
+      $req = $this->db->prepare("SELECT PICTURE_NUM, PICTURE_NAME, PICTURE_DESCRIPTION, CAR_ID
+        FROM picture WHERE CAR_ID = :carId AND PICTURE_NUM = 1");
       $req->bindValue(':carId', $carId, PDO::PARAM_STR);
       $req->execute();
       $picture = new Picture($req->fetch(PDO::FETCH_OBJ));
@@ -44,11 +45,12 @@ class PictureManager
     public function getPicturesByCarId($carId)
     {
       $pictureList = array();
-      $req = $this->db->prepare("SELECT PICTURE_ID, PICTURE_NUM, PICTURE_DESCRIPTION, CAR_ID FROM picture WHERE CAR_ID = :carId");
+      $req = $this->db->prepare("SELECT PICTURE_NUM, PICTURE_NAME, PICTURE_DESCRIPTION, CAR_ID
+        FROM picture WHERE CAR_ID = :carId");
       $req->bindValue(':carId', $carId, PDO::PARAM_STR);
       $req->execute();
       while ($picture = $req->fetch(PDO::FETCH_OBJ)) {
-          $modelList[] = new Picture($picture);
+          $pictureList[] = new Picture($picture);
       };
       $req->closeCursor();
       return $pictureList;
@@ -61,24 +63,17 @@ class PictureManager
      * @param integer $idSujet L'id du Sujet de l'Attribue à récupérer.
      * @return Attribue Une instance d'Attribue correspondant aux paramètres spécifiés.
      */
-    public function getPictureById($pictureId)
-    {
-        $req = $this->db->prepare(
-            'SELECT PICTURE_ID, PICTURE_NUM, PICTURE_DESCRIPTION, CAR_ID FROM picture WHERE PICTURE_ID = :pictureId'
-        );
-        $req->bindValue(':pictureId', $pictureId, PDO::PARAM_STR);
-        $req->execute();
-        $picture = new Picture($req->fetch(PDO::FETCH_OBJ));
-        $req->closeCursor();
-        return $picture;
-    }
-
-    public function deletePictureById($pictureId) {
-      $req = $this->db->prepare("DELETE FROM picture WHERE PICTURE_ID = :pictureId");
-      $req->bindValue(':pictureId', $pictureId, PDO::PARAM_STR);
-      $req->execute();
-      $req->closeCursor();
-    }
+    // public function getPictureById($pictureId)
+    // {
+    //     $req = $this->db->prepare(
+    //         'SELECT PICTURE_ID, PICTURE_NUM, PICTURE_NAME, PICTURE_DESCRIPTION, CAR_ID FROM picture WHERE PICTURE_ID = :pictureId'
+    //     );
+    //     $req->bindValue(':pictureId', $pictureId, PDO::PARAM_STR);
+    //     $req->execute();
+    //     $picture = new Picture($req->fetch(PDO::FETCH_OBJ));
+    //     $req->closeCursor();
+    //     return $picture;
+    // }
 
 }
 

@@ -233,6 +233,10 @@ p.hero-subtitle{
   margin: 0px;
 }
 
-row .card-body{
+.row .card-body{
   padding: 0px;
+}
+
+.picturesPicker div {
+  height: auto;
 }

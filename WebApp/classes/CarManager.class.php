@@ -3,6 +3,7 @@
 class CarManager
 {
   private $db;
+  private $lastInsertId;
 
   /**
   * Retourne une nouvelle instance d'AttribueManager.
@@ -28,6 +29,7 @@ class CarManager
       $req->bindValue(':carDescription', $car->getCarDescription(), PDO::PARAM_STR);
       $req->bindValue(':modelId', $car->getModelId(), PDO::PARAM_STR);
       $req->execute();
+      $this->lastInsertId = $this->db->lastInsertId();
     }
 
 
@@ -45,6 +47,19 @@ class CarManager
         $req->execute();
       }
 
+      public function getAllCars()
+      {
+        $carList = array();
+        $req = $this->db->prepare(
+          'SELECT CAR_ID,CAR_MILAGE,CAR_COLOR,CAR_PRICE,CAR_DESCRIPTION,MODEL_ID FROM car'
+        );
+        $req->execute();
+        while ($car = $req->fetch(PDO::FETCH_OBJ)) {
+          $carList[] = new Car($car);
+        };
+        $req->closeCursor();
+        return $carList;
+      }
 
     public function getAllCarsByModel($modelId)
     {
@@ -181,10 +196,15 @@ class CarManager
     }
 
     public function deleteCarById($carId) {
+      //Delete the car
       $req = $this->db->prepare("DELETE FROM car WHERE CAR_ID = :carId");
       $req->bindValue(':carId', $carId, PDO::PARAM_STR);
       $req->execute();
       $req->closeCursor();
+    }
+
+    public function getLastInsertId(){
+      return $this->lastInsertId;
     }
 
 

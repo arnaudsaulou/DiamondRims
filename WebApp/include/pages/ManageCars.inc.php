@@ -3,7 +3,8 @@
 //Handle the car update
 if(isset($_POST['carMilageInput']) && isset($_POST['carColorInput']) &&
 isset($_POST['carPriceInput']) && isset($_POST['carDescriptionInput']) &&
-isset($_POST['carModelInput']) && isset($_GET['action'])){
+isset($_POST['carModelInput'])  && isset($_POST['pictureNames'])
+&& isset($_POST['pictureDescriptions']) && isset($_GET['action'])){
 
   if($_GET['action'] == 0) {
 
@@ -21,6 +22,26 @@ isset($_POST['carModelInput']) && isset($_GET['action'])){
     //Call manager to create new car in the database
     $carManager->addCar($newCar);
 
+    for($i = 0; $i < count($_POST['pictureNames']); $i++){
+
+      if($_POST['pictureNames'][$i] != ""){
+
+        $newPicture = new Picture(
+          array(
+            "PICTURE_NUM"=>$i,
+            "PICTURE_NAME" => $_POST['pictureNames'][$i],
+            "PICTURE_DESCRIPTION"=> $_POST['pictureDescriptions'][$i],
+            "CAR_ID"=>$carManager->getLastInsertId()
+          )
+        );
+
+        $pictureManager->addPicture($newPicture);
+      } else {
+        break;
+      }
+    }
+
+
   } elseif ($_GET['action'] == 1 && isset($_GET['id'])) {
     //Create Car object with POST values
     $updatedCar= new Car(
@@ -36,6 +57,25 @@ isset($_POST['carModelInput']) && isset($_GET['action'])){
 
     //Call manager to update the car in the database
     $carManager->updateCar($updatedCar);
+
+    for($i = 0; $i < count($_POST['pictureNames']); $i++){
+
+      if($_POST['pictureNames'][$i] != ""){
+
+        $updatedPicture = new Picture(
+          array(
+            "PICTURE_NUM"=>$i,
+            "PICTURE_NAME" => $_POST['pictureNames'][$i],
+            "PICTURE_DESCRIPTION"=> $_POST['pictureDescriptions'][$i],
+            "CAR_ID"=>$_GET['id']
+          )
+        );
+
+        $pictureManager->updatePicture($updatedPicture);
+      } else {
+        break;
+      }
+    }
   }
 
   //Redirect the user
@@ -58,7 +98,7 @@ if(isset($_GET['action'])){
     <h3 class="col-12 mb-4 mt-4">Add a new <?php echo $brandName; ?> car</h3>
 
     <!--  Display add model form -->
-    <form class="col-md-12" action="index.php?page=4&option=2&action=0" method="post">
+    <form class="col-md-12" action="index.php?page=4&option=2&action=1&id=<?php echo $_GET['id'] ?>" method="post">
 
       <div class="form-group">
         <label for="carModelInput">Car model</label>
@@ -98,45 +138,79 @@ if(isset($_GET['action'])){
         <textarea
         class="form-control" id="carDescriptionInput" rows="3" name="carDescriptionInput"
         placeholder="Please enter a description for this car" required></textarea>
-    </div>
+      </div>
 
-    <div class="form-group">
-      <label for="carPriceInput">Car price</label>
-      <input
-      type="number" class="form-control" id="carPriceInput" name="carPriceInput"
-      placeholder="Please enter the price of this car" min="0" max="60000000"
-      required >
-    </div>
+      <div class="form-group">
+        <label for="carPriceInput">Car price</label>
+        <input
+        type="number" class="form-control" id="carPriceInput" name="carPriceInput"
+        placeholder="Please enter the price of this car" min="0" max="60000000"
+        required >
+      </div>
 
-    <button type="submit" class="btn btn-primary col-sm-2 offset-sm-10">VALIDATE</button>
-  </form>
+      <div class="picturesPicker">
+        <div class="form-group py-2">
+          <label for="mainPictureInput">Main picture</label>
+          <div class="form-control py-1" id="mainPictureInput">
+            <input name="pictureNames[]" type="file" accept=".jpg" required/>
+            <input class="form-control" name="pictureDescriptions[]" type="text"
+            placeholder="Please enter a description for this picture"
+            required/>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="sidePictureInput">Side pictures (optional)</label>
+          <div class="form-control" id="sidePictureInput">
+
+            <div class="form-control py-2 mb-2 mt-2" id="sidePictureInput">
+              <input name="pictureNames[]" type="file" accept=".jpg"/>
+              <input  class="form-control" name="pictureDescriptions[]" type="text"
+              placeholder="Please enter a description for this picture"/>
+            </div>
+
+            <div class="form-control py-2 mb-2 mt-2" id="sidePictureInput">
+              <input name="pictureNames[]" type="file" accept=".jpg"/>
+              <input  class="form-control" name="pictureDescriptions[]" type="text"
+              placeholder="Please enter a description for this picture"/>
+            </div>
+
+            <div class="form-control py-2 mb-2 mt-2" id="sidePictureInput">
+              <input name="pictureNames[]" type="file" accept=".jpg"/>
+              <input  class="form-control" name="pictureDescriptions[]" type="text"
+              placeholder="Please enter a description for this picture"/>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-primary col-sm-2 offset-sm-10">VALIDATE</button>
+    </form>
 
 
-  <?php
-  //Update
-} elseif($_GET['action'] == 1 && isset($_GET['id'])) {
+    <?php
+    //Update
+  } elseif($_GET['action'] == 1 && isset($_GET['id'])) {
 
-  $car = $carManager->getCarById($_GET['id']);
-  ?>
+    $car = $carManager->getCarById($_GET['id']);
+    ?>
 
-  <h3 class="col-12 mb-4 mt-4">Update a <?php echo $brandName; ?> car</h3>
+    <h3 class="col-12 mb-4 mt-4">Update a <?php echo $brandName; ?> car</h3>
 
-  <!--  Display update car form -->
-  <form class="col-md-12" action="index.php?page=4&option=2&action=1&id=<?php echo $_GET['id'] ?>" method="post">
+    <!--  Display update car form -->
+    <form class="col-md-12" action="index.php?page=4&option=2&action=0" method="post">
 
-    <div class="form-group">
-      <label for="carModelInput">Car model</label>
-      <select class="form-control" id="carModelInput" name="carModelInput" required>
+      <div class="form-group">
+        <label for="carModelInput">Car model</label>
+        <select class="form-control" id="carModelInput" name="carModelInput" required>
 
-        <?php
+          <?php
 
-        $modelList = $modelManager->getAllModelsByBrand($_GET['brand']);
+          $modelList = $modelManager->getAllModelsByBrand($_GET['brand']);
 
-        foreach ($modelList as $model) {
-          ?>
-          <option value="<?php echo $model->getModelId(); ?>" <?php if($car->getModelId() == $model->getModelId()){ ?> selected <?php } ?>>
-            <?php echo $model->getModelName(); ?>
-          </option>
+          foreach ($modelList as $model) {
+            ?>
+            <option value="<?php echo $model->getModelId(); ?>"><?php echo $model->getModelName(); ?></option>
             <?php
           }
           ?>
@@ -148,7 +222,8 @@ if(isset($_GET['action'])){
         <label for="carColorInput">Car color</label>
         <input
         type="text" class="form-control" id="carColorInput" name="carColorInput"
-        placeholder="Please enter a color for this car" value="<?php echo $car->getCarColor(); ?>"
+        placeholder="Please enter a color for this car"
+        value="<?php echo $car->getCarColor(); ?>"
         required >
       </div>
 
@@ -156,8 +231,8 @@ if(isset($_GET['action'])){
         <label for="carMilageInput">Car milage</label>
         <input
         type="number" class="form-control" id="carMilageInput" name="carMilageInput"
-        placeholder="Please enter a milage for this car" value="<?php echo $car->getCarMilage(); ?>"
-        min="0" max="500000" required >
+        placeholder="Please enter a milage for this car"
+        min="0" max="500000" value="<?php echo $car->getCarMilage(); ?>" required >
       </div>
 
       <div class="form-group">
@@ -165,32 +240,73 @@ if(isset($_GET['action'])){
         <textarea
         class="form-control" id="carDescriptionInput" rows="3" name="carDescriptionInput"
         placeholder="Please enter a description for this car" required><?php echo $car->getCarDescription(); ?></textarea>
-    </div>
+      </div>
 
-    <div class="form-group">
-      <label for="carPriceInput">Car price</label>
-      <input
-      type="number" class="form-control" id="carPriceInput" name="carPriceInput"
-      placeholder="Please enter the price of this car" min="0" max="60000000"
-      value="<?php echo $car->getCarPrice(); ?>"
-      required >
-    </div>
+      <div class="form-group">
+        <label for="carPriceInput">Car price</label>
+        <input
+        type="number" class="form-control" id="carPriceInput" name="carPriceInput"
+        placeholder="Please enter the price of this car" min="0" max="60000000"
+        value="<?php echo $car->getCarPrice(); ?>" required >
+      </div>
 
-    <button type="submit" class="btn btn-primary col-sm-2 offset-sm-10">VALIDATE</button>
-  </form>
+      <?php
+        $pictureList = $pictureManager->getPicturesByCarId($car->getCarId());
+      ?>
 
-  <?php
-  //Delete
-}elseif($_GET['action'] == 2 && isset($_GET['id'])) {
-  //Call manager to delete car in the database
-  $carManager->deleteCarById($_GET['id']);
+      <div class="picturesPicker">
+        <div class="form-group py-2">
+          <label for="mainPictureInput">Main picture</label>
+          <div class="form-control py-1" id="mainPictureInput">
+            <input name="pictureNames[]" type="file" accept=".jpg"
+            required/>
+            <input class="form-control" name="pictureDescriptions[]" type="text"
+            placeholder="Please enter a description for this picture"
+            value="<?php echo $pictureList[0]->getPictureDescription(); ?>"
+            required/>
+          </div>
+        </div>
 
-  //Redirect the user
-  ?><script> window.location.href="./index.php?page=4&option=2";  </script><?php
+        <div class="form-group">
+          <label for="sidePictureInput">Side pictures (optional)</label>
+          <div class="form-control" id="sidePictureInput">
 
-}
+            <div class="form-control py-2 mb-2 mt-2" id="sidePictureInput">
+              <input name="pictureNames[]" type="file" accept=".jpg"/>
+              <input  class="form-control" name="pictureDescriptions[]" type="text"
+              placeholder="Please enter a description for this picture"/>
+            </div>
 
-//View
+            <div class="form-control py-2 mb-2 mt-2" id="sidePictureInput">
+              <input name="pictureNames[]" type="file" accept=".jpg"/>
+              <input  class="form-control" name="pictureDescriptions[]" type="text"
+              placeholder="Please enter a description for this picture"/>
+            </div>
+
+            <div class="form-control py-2 mb-2 mt-2" id="sidePictureInput">
+              <input name="pictureNames[]" type="file" accept=".jpg"/>
+              <input  class="form-control" name="pictureDescriptions[]" type="text"
+              placeholder="Please enter a description for this picture"/>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-primary col-sm-2 offset-sm-10">VALIDATE</button>
+    </form>
+
+    <?php
+    //Delete
+  }elseif($_GET['action'] == 2 && isset($_GET['id'])) {
+    //Call manager to delete car in the database
+    $carManager->deleteCarById($_GET['id']);
+
+    //Redirect the user
+    ?><script> window.location.href="./index.php?page=4&option=2";  </script><?php
+
+  }
+
+  //View
 } else {
 
   //If a brand has been specified

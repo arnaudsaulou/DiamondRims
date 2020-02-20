@@ -79,7 +79,7 @@
           <div class="row">
             <div class="col-md-12">
               <a class="product-image" href="<?php echo $car->getCarId(); ?>">
-                <img src="public/carPictures/<?php echo $car->getCarId(), "_1.jpg"; ?> " alt="<?php echo $picture->getPictureDescription(); ?>">
+                <img src="public/carPictures/<?php echo $picture->getPictureName(); ?> " alt="<?php echo $picture->getPictureDescription(); ?>">
               </a>
             </div>
           </div>
