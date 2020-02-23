@@ -130,7 +130,8 @@ if(isset($_GET['action'])){
             </a>
           </td>
           <td>
-            <a href="index.php?page=4&option=0&action=2&id=<?php echo $brand->getBrandId(); ?>">
+            <a href="index.php?page=4&option=0&action=2&id=<?php echo $brand->getBrandId(); ?>"
+              onclick="return confirm('Are you sure you whant to delete this brand and so all models and cars related to ?')">
               <img class="crudIcon" src="assets/icon/binIcon.png" alt="bin icon">
             </a>
           </td>

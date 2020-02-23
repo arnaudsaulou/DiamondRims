@@ -43,6 +43,7 @@ isset($_POST['carModelInput'])  && isset($_POST['pictureNames'])
 
 
   } elseif ($_GET['action'] == 1 && isset($_GET['id'])) {
+
     //Create Car object with POST values
     $updatedCar= new Car(
       array(
@@ -58,20 +59,27 @@ isset($_POST['carModelInput'])  && isset($_POST['pictureNames'])
     //Call manager to update the car in the database
     $carManager->updateCar($updatedCar);
 
+    //Update = Delete then add (More simple than update)
+
+    //Delete
+    $pictureManager->deletePictureByCarId($_GET['id']);
+
+    //Add
     for($i = 0; $i < count($_POST['pictureNames']); $i++){
 
       if($_POST['pictureNames'][$i] != ""){
 
-        $updatedPicture = new Picture(
+        $newPicture = new Picture(
           array(
             "PICTURE_NUM"=>$i,
             "PICTURE_NAME" => $_POST['pictureNames'][$i],
             "PICTURE_DESCRIPTION"=> $_POST['pictureDescriptions'][$i],
-            "CAR_ID"=>$_GET['id']
+            "CAR_ID"=> $_GET['id']
           )
         );
 
-        $pictureManager->updatePicture($updatedPicture);
+        $pictureManager->addPicture($newPicture);
+
       } else {
         break;
       }
@@ -98,7 +106,7 @@ if(isset($_GET['action'])){
     <h3 class="col-12 mb-4 mt-4">Add a new <?php echo $brandName; ?> car</h3>
 
     <!--  Display add model form -->
-    <form class="col-md-12" action="index.php?page=4&option=2&action=1&id=<?php echo $_GET['id'] ?>" method="post">
+    <form class="col-md-12" action="index.php?page=4&option=2&action=0" method="post">
 
       <div class="form-group">
         <label for="carModelInput">Car model</label>
@@ -198,7 +206,7 @@ if(isset($_GET['action'])){
     <h3 class="col-12 mb-4 mt-4">Update a <?php echo $brandName; ?> car</h3>
 
     <!--  Display update car form -->
-    <form class="col-md-12" action="index.php?page=4&option=2&action=0" method="post">
+    <form class="col-md-12" action="index.php?page=4&option=2&action=1&id=<?php echo $_GET['id']; ?>" method="post">
 
       <div class="form-group">
         <label for="carModelInput">Car model</label>
@@ -210,7 +218,10 @@ if(isset($_GET['action'])){
 
           foreach ($modelList as $model) {
             ?>
-            <option value="<?php echo $model->getModelId(); ?>"><?php echo $model->getModelName(); ?></option>
+            <option value="<?php echo $model->getModelId(); ?>"
+              <?php if($model->getModelId() == $car->getModelId()){ ?> selected <?php } ?>>
+              <?php echo $model->getModelName(); ?>
+            </option>
             <?php
           }
           ?>
@@ -262,7 +273,7 @@ if(isset($_GET['action'])){
             required/>
             <input class="form-control" name="pictureDescriptions[]" type="text"
             placeholder="Please enter a description for this picture"
-            value="<?php echo $pictureList[0]->getPictureDescription(); ?>"
+            value="<?php if(count($pictureList) > 0){ echo $pictureList[0]->getPictureDescription();} ?>"
             required/>
           </div>
         </div>
@@ -274,18 +285,21 @@ if(isset($_GET['action'])){
             <div class="form-control py-2 mb-2 mt-2" id="sidePictureInput">
               <input name="pictureNames[]" type="file" accept=".jpg"/>
               <input  class="form-control" name="pictureDescriptions[]" type="text"
+              value="<?php if(count($pictureList) > 1){ echo $pictureList[1]->getPictureDescription();} ?>"
               placeholder="Please enter a description for this picture"/>
             </div>
 
             <div class="form-control py-2 mb-2 mt-2" id="sidePictureInput">
               <input name="pictureNames[]" type="file" accept=".jpg"/>
               <input  class="form-control" name="pictureDescriptions[]" type="text"
+              value="<?php if(count($pictureList) > 2){ echo $pictureList[2]->getPictureDescription();} ?>"
               placeholder="Please enter a description for this picture"/>
             </div>
 
             <div class="form-control py-2 mb-2 mt-2" id="sidePictureInput">
               <input name="pictureNames[]" type="file" accept=".jpg"/>
               <input  class="form-control" name="pictureDescriptions[]" type="text"
+              value="<?php if(count($pictureList) > 3){ echo $pictureList[3]->getPictureDescription();} ?>"
               placeholder="Please enter a description for this picture"/>
             </div>
           </div>
@@ -352,7 +366,8 @@ if(isset($_GET['action'])){
                 </a>
               </td>
               <td>
-                <a href="index.php?page=4&option=2&action=2&brand=<?php echo $model->getBrandId(); ?>&id=<?php echo $car->getCarId(); ?>">
+                <a href="index.php?page=4&option=2&action=2&brand=<?php echo $model->getBrandId(); ?>&id=<?php echo $car->getCarId(); ?>"
+                  onclick="return confirm('Are you sure you whant to delete this car ?')">
                   <img class="crudIcon" src="assets/icon/binIcon.png" alt="bin icon">
                 </a>
               </td>

@@ -166,7 +166,8 @@ if(isset($_GET['action'])){
               </a>
             </td>
             <td>
-              <a href="index.php?page=4&option=1&action=2&brand=<?php echo $model->getBrandId(); ?>&id=<?php echo $model->getModelId(); ?>">
+              <a href="index.php?page=4&option=1&action=2&brand=<?php echo $model->getBrandId(); ?>&id=<?php echo $model->getModelId(); ?>"
+                onclick="return confirm('Are you sure you whant to delete this model and so all cars related to ?')">
                 <img class="crudIcon" src="assets/icon/binIcon.png" alt="bin icon">
               </a>
             </td>

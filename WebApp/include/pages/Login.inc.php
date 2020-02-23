@@ -2,8 +2,22 @@
 if (empty($_POST)){
   if(isset($_SESSION['currentUser'])){
     ?>
-    <p>Vous êtes déjà connecté, vous allez être redirigé dans 2 secondes !</p>
-    <meta http-equiv="refresh" content="2; URL=index.php">
+
+    <div class="col col-md-4 offset-md-4 bg-light mt-3 mb-3 card-body">
+      <div class="text-center">
+        <i class="fa fa-hourglass" style="color:green"></i>
+        <span class="text-center">
+          <h4>Vous êtes déjà connecté, vous allez être redirigé dans 1 secondes !</h4>
+        </span>
+      </div>
+
+      <div class="card-body">
+        <a class="btn btn-primary btn-block" href="index.php?page=0">Cliquez ici si vous n'êtes pas redirigé</a>
+      </div>
+    </div>
+
+    <meta http-equiv="refresh" content="1; URL=index.php?page=0">
+
     <?php
   } else {
     ?>

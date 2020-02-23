@@ -58,8 +58,9 @@
                     <?php
                         }
                      ?>
+                      <li class="nav-item" role="presentation"><a class="nav-link" href="index.php?page=6">Log out</a></li>
                     <?php } else { ?>
-                      <li class="nav-item" role="presentation"><a class="nav-link" href="index.php?page=3">Connection</a></li>
+                      <li class="nav-item" role="presentation"><a class="nav-link" href="index.php?page=3">Log in</a></li>
                     <?php } ?>
                 </ul>
         </div>

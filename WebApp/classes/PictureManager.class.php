@@ -57,23 +57,25 @@ class PictureManager
     }
 
 
-    /**
-     * Retourne une instance d'Attribue à partir de son idUtilisateur et son idSujet.
-     * @param integer $idUtilisateur L'id de l'Utilisateur de l'Attribue à récupérer.
-     * @param integer $idSujet L'id du Sujet de l'Attribue à récupérer.
-     * @return Attribue Une instance d'Attribue correspondant aux paramètres spécifiés.
-     */
-    // public function getPictureById($pictureId)
-    // {
-    //     $req = $this->db->prepare(
-    //         'SELECT PICTURE_ID, PICTURE_NUM, PICTURE_NAME, PICTURE_DESCRIPTION, CAR_ID FROM picture WHERE PICTURE_ID = :pictureId'
-    //     );
-    //     $req->bindValue(':pictureId', $pictureId, PDO::PARAM_STR);
-    //     $req->execute();
-    //     $picture = new Picture($req->fetch(PDO::FETCH_OBJ));
-    //     $req->closeCursor();
-    //     return $picture;
-    // }
+    public function updatePicture($updatedPicture)
+    {
+        $req = $this->db->prepare(
+            'UPDATE picture SET PICTURE_NUM=:pictureNum,PICTURE_NAME=:pictureName,PICTURE_DESCRIPTION=:pictureDescription
+            WHERE PICTURE_NUM=:pictureNum AND CAR_ID=:carId');
+        $req->bindValue(':pictureNum', $updatedPicture->getPictureNum(), PDO::PARAM_STR);
+        $req->bindValue(':pictureName', $updatedPicture->getPictureName(), PDO::PARAM_STR);
+        $req->bindValue(':pictureDescription', $updatedPicture->getPictureDescription(), PDO::PARAM_STR);
+        $req->bindValue(':carId', $updatedPicture->getCarId(), PDO::PARAM_STR);
+        $req->execute();
+    }
+
+    public function deletePictureByCarId($carId)
+    {
+      $req = $this->db->prepare(
+          'DELETE FROM picture WHERE CAR_ID=:carId');
+      $req->bindValue(':carId', $carId, PDO::PARAM_STR);
+      $req->execute();
+    }
 
 }
 
