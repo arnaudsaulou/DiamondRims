@@ -1,7 +1,7 @@
 
 <h1 class="text-center text-white d-none d-lg-block site-heading">
   <span class="text-primary site-heading-upper mb-3" style="font-size: 65px;color: rgb(244,172,21);">
-    <img src="assets/img/DiamondRimsLogo.png" style="width: 83px;" alt="Diamond rims logo">
+    <img src="assets/img/DiamondRimsLogo.svg" style="width: 83px;" alt="Diamond rims logo">
     &nbsp;DIAMOND RIMS&nbsp;
   </span>
   <span class="site-heading-lower" style="font-size: 41px;">
@@ -70,6 +70,7 @@
       $model = $modelManager->getModelById($car->getModelId());
       $brand = $brandManager->getBrandById($model->getBrandId());
       $picture = $pictureManager->getMainPictureByCarId($car->getCarId());
+
       ?>
 
       <div class="col-sm-6 col-md-4 product-item animation-element slide-top-left">
@@ -78,7 +79,7 @@
 
           <div class="row">
             <div class="col-md-12">
-              <a class="product-image" href="<?php echo $car->getCarId(); ?>">
+              <a class="product-image" href="index.php?page=7&id=<?php echo $car->getCarId(); ?>">
                 <img src="public/carPictures/<?php echo $picture->getPictureName(); ?> " alt="<?php echo $picture->getPictureDescription(); ?>">
               </a>
             </div>
@@ -87,7 +88,7 @@
           <div class="row">
             <div class="col-12">
               <h2>
-                <a href="#"><?php echo $brand->getBrandName(), " - ", $model->getModelName(); ?></a>
+                <a href="index.php?page=7&id=<?php echo $car->getCarId(); ?>"><?php echo $brand->getBrandName(), " - ", $model->getModelName(); ?></a>
               </h2>
             </div>
           </div>
@@ -107,7 +108,9 @@
               </p>
               <div class="row">
                 <div class="col-6">
-                  <button class="btn btn-light" type="button">Buy Now!</button>
+                  <form action="index.php?page=7&id=<?php echo $car->getCarId(); ?>" method="POST">
+                    <button class="btn btn-dark" type="submit">Buy Now!</button>
+                  </form>
                 </div>
                 <div class="col-6">
                   <p class="product-price">$<?php echo $car->getCarPrice(); ?> </p>

@@ -33,7 +33,7 @@ class PictureManager
     {
       $pictureList = array();
       $req = $this->db->prepare("SELECT PICTURE_NUM, PICTURE_NAME, PICTURE_DESCRIPTION, CAR_ID
-        FROM picture WHERE CAR_ID = :carId AND PICTURE_NUM = 1");
+        FROM picture WHERE CAR_ID = :carId AND PICTURE_NUM = 0");
       $req->bindValue(':carId', $carId, PDO::PARAM_STR);
       $req->execute();
       $picture = new Picture($req->fetch(PDO::FETCH_OBJ));
@@ -46,7 +46,7 @@ class PictureManager
     {
       $pictureList = array();
       $req = $this->db->prepare("SELECT PICTURE_NUM, PICTURE_NAME, PICTURE_DESCRIPTION, CAR_ID
-        FROM picture WHERE CAR_ID = :carId");
+        FROM picture WHERE CAR_ID = :carId AND PICTURE_NUM != 0");
       $req->bindValue(':carId', $carId, PDO::PARAM_STR);
       $req->execute();
       while ($picture = $req->fetch(PDO::FETCH_OBJ)) {

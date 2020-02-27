@@ -1,6 +1,6 @@
 <h1 class="text-center text-white d-none d-lg-block site-heading">
   <span class="text-primary site-heading-upper mb-3" style="font-size: 65px;color: rgb(244,172,21);">
-    <img src="assets/img/DiamondRimsLogo.png" style="width: 83px;" alt="Diamond rims logo">
+    <img src="assets/img/DiamondRimsLogo.svg" style="width: 83px;" alt="Diamond rims logo">
     &nbsp;DIAMOND RIMS&nbsp;
   </span>
   <span class="site-heading-lower" style="font-size: 41px;">
@@ -11,7 +11,7 @@
   <div class="container">
     <img
       class="img-fluid rounded about-heading-img mb-3 mb-lg-0"
-      src="assets/img/BugattiChironMansory.jpg"
+      src="assets/img/BugattiChironMansory.webp"
       alt="Bugatti Chiron Mansory">
     <div class="about-heading-content">
       <div class="row">

@@ -24,7 +24,7 @@ if (empty($_POST)){
 
     <h1 class="text-center text-white d-none d-lg-block site-heading site-heading-connection">
       <span class="text-primary" style="font-size: 35px;color: rgb(244,172,21);">
-        <img src="assets/img/DiamondRimsLogo.png" style="width: 45px;" />
+        <img src="assets/img/DiamondRimsLogo.svg" style="width: 45px;" />
         DIAMOND RIMS
       </span>
     </h1>

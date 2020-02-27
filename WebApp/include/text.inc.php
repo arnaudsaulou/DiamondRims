@@ -67,6 +67,11 @@
       exit(header("Location:./index.php?page=0"));
     break;
 
+    case 7:
+    // Details product page
+    include_once('pages/ProductsDetails.inc.php');
+    break;
+
     default :
     include_once('pages/Home.inc.php');
   }

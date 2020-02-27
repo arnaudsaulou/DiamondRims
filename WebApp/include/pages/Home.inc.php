@@ -1,6 +1,6 @@
 <h1 class="text-center text-white d-none d-lg-block site-heading">
   <span class="text-primary site-heading-upper mb-3" style="font-size: 65px;color: rgb(244,172,21);">
-    <img src="assets/img/DiamondRimsLogo.png" style="width: 83px;" alt="Diamond rims logo">
+    <img src="assets/img/DiamondRimsLogo.svg" style="width: 83px;" alt="Diamond rims logo">
     &nbsp;DIAMOND RIMS&nbsp;
   </span>
   <span class="site-heading-lower" style="font-size: 41px;">
@@ -14,7 +14,7 @@
     <!-- Start: Carousel Hero -->
     <div class="carousel slide" data-ride="carousel" id="carousel-1">
         <div class="carousel-inner" role="listbox">
-            <div class="carousel-item active">
+            <div class="carousel-item active" role="option">
                 <div class="jumbotron jumbotron-fluid carousel-hero carousel-item1">
                     <h1 class="hero-title">Dream cars</h1>
                     <p class="hero-subtitle">
@@ -24,7 +24,7 @@
                     </p>
                 </div>
             </div>
-            <div class="carousel-item">
+            <div class="carousel-item" role="option">
                 <div class="jumbotron jumbotron-fluid carousel-hero carousel-item2">
                     <h1 class="hero-title">Collections</h1>
                     <p class="hero-subtitle">
@@ -34,7 +34,7 @@
                     </p>
                 </div>
             </div>
-            <div class="carousel-item">
+            <div class="carousel-item" role="option">
                 <div class="jumbotron jumbotron-fluid carousel-hero carousel-item3">
                     <h1 class="hero-title">Movies</h1>
                     <p class="hero-subtitle">Our garage has the finest cars produced specially for movies.</p>
@@ -64,7 +64,7 @@
             <div class="intro">
               <img
                 class="img-fluid intro-img mb-3 mb-lg-0 rounded"
-                src="assets/img/MercedessF1Staff.jpg"
+                src="assets/img/MercedessF1Staff.webp"
                 alt="Mercedess F1 staff">
                 <div class="intro-text left-0 text-centerfaded p-5 rounded bg-faded text-center" style="opacity: 1;">
                     <h2 class="section-heading mb-4"><span class="section-heading-upper">international recognition</span><span class="section-heading-lower">worth<br>thinking</span></h2>

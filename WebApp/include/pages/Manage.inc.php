@@ -1,6 +1,6 @@
 <h1 class="text-center text-white d-none d-lg-block site-heading">
   <span class="text-primary site-heading-upper mb-3" style="font-size: 65px;color: rgb(244,172,21);">
-    <img src="assets/img/DiamondRimsLogo.png" alt="Diamond Rims logo" style="width: 83px;" /> DIAMOND RIMS </span>
+    <img src="assets/img/DiamondRimsLogo.svg" alt="Diamond Rims logo" style="width: 83px;" /> DIAMOND RIMS </span>
   </h1>
   <div class="float-left col-md-2 p-3 fill" style="background-color: rgba(230,167,86,0.9);">
 

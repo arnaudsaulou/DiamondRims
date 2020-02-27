@@ -1,6 +1,6 @@
 
 body{
-  background-image: url("../img/Marble.jpg");"
+  background-image: url("../img/Marble.webp");"
 }
 
 div {
@@ -25,6 +25,14 @@ body::-webkit-scrollbar {
   background: transparent; /* Disable scrollbar Chrome/Safari/Webkit */
 }
 
+@font-face {
+  font-family: 'Pacifico';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Pacifico Regular'), local('Pacifico-Regular'), url(https://fonts.gstatic.com/s/pacifico/v12/FwZY7-Qmy14u9lezJ-6H6MmBp0u-.woff2) format('woff2');
+  font-display: swap;
+}
+
 /* Home */
 
 .carousel-fade .carousel-item>img{
@@ -44,15 +52,15 @@ div.jumbotron.carousel-hero{
 }
 
 div.jumbotron.carousel-item1{
-  background-image:url(../../assets/img/RollsFrontGrill.jpg)
+  background-image:url(../../assets/img/RollsFrontGrill.webp)
 }
 
 div.jumbotron.carousel-item2{
-  background-image:url(../../assets/img/BentleyInterrior.jpg)
+  background-image:url(../../assets/img/BentleyInterrior.webp)
 }
 
 div.jumbotron.carousel-item3{
-  background-image:url(../../assets/img/AMG_GTC.jpg);
+  background-image:url(../../assets/img/AMG_GTC.webp);
 }
 
 h1.hero-title, h2.hero-title, h3.hero-title{
@@ -78,7 +86,6 @@ p.hero-subtitle{
   margin-top: 40px;
   margin-bottom: 40px;
 }
-
 
 /* Products */
 
@@ -120,7 +127,7 @@ p.hero-subtitle{
 
 .product-item a.product-image img {
   width: 100%;
-  max-height: 150px;
+  height: auto;
 }
 
 .product-item h2 {
@@ -166,42 +173,8 @@ p.hero-subtitle{
   margin-bottom: 20px;
 }
 
-.product-item button {
-  border-radius: 2px;
-  background: #87bae1;
-  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.12);
-  border: 0;
-  color: #ffffff;
-  font-weight: bold;
-  font-size: 13px;
-  padding: 8px 20px;
-}
-
-.product-item button:active {
-  background: #87bae1;
-  color: #fff;
-  border: 0;
-}
-
-.product-item button:focus {
-  background: #87bae1;
-  outline: none;
-  color: #fff;
-}
-
-.product-item button:hover {
-  background: #66ABE0;
-  color: #fff;
-}
-
-.product-item button:focus:active {
-  background: #87bae1;
-  outline: none;
-  color: #fff;
-}
-
 .product-price {
-  color: #e6a756;
+  color: #dc7d03;
   font-weight: bold;
   font-size: 20px;
 }
@@ -209,6 +182,12 @@ p.hero-subtitle{
 .light-search-bar{
   background-color: white;
   border-radius: 5px;
+}
+
+/* Product details */
+
+.list-unstyled li p {
+  display: inline;
 }
 
 /* Manage */
@@ -239,4 +218,9 @@ p.hero-subtitle{
 
 .picturesPicker div {
   height: auto;
+}
+
+/* Footer */
+footer .small{
+  color: white;
 }

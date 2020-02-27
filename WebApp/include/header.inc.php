@@ -8,26 +8,25 @@
     <meta name="description" content="Online luxury car dealer">
     <meta name="author" content="The best team">
 
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="theme-color" content="#212529">
+
     <!-- Title / favicon -->
     <title>Diamond Rims</title>
-    <link href="ressources/favicon.ico" rel="icon" type="image/x-icon" />
+    <link href="assets/img/DiamondRimsLogo.svg" rel="icon" type="image/x-icon">
+    <link rel="apple-touch-icon" href="assets/icon/AppleDiamondRimsLogo.svg">
 
     <!-- Reset CSS -->
-    <link rel="stylesheet" type="text/css" href="css/resetStyle.css"/>
+    <link rel="stylesheet" type="text/css" href="assets/css/resetStyle.css" async preloadlien>
 
     <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/bootstrap.css" async preloadlien>
 
     <!-- Ressources -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.1.1/aos.css">
-
 
     <!-- Custom styles for this template -->
-    <link rel="stylesheet" href="assets/css/styles.min.css">
+    <link rel="stylesheet" href="assets/css/styles.css" async preloadlien>
 
 </head>
 
