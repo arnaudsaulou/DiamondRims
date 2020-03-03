@@ -15,9 +15,9 @@ $sidePictures = $pictureManager->getPicturesByCarId($car->getCarId());
 
 ?>
 
-<div class="container bg-faded p-2">
-  <h2 class="text-left pt-4 pb-4 pl-2"><?php echo $brand->getBrandName(), " - ", $model->getModelName(); ?></h2>
-  <div class="row">
+<div class="container bg-faded p-4">
+  <h2 class="text-left pl-2"><?php echo $brand->getBrandName(), " - ", $model->getModelName(); ?></h2>
+  <div class="row mt-4">
     <div class="col-md-8">
       <img class="img-fluid" src="public/carPictures/<?php echo $mainPicture->getPictureName(); ?> " alt="<?php echo $mainPicture->getPictureDescription(); ?>">
     </div>
@@ -28,33 +28,126 @@ $sidePictures = $pictureManager->getPicturesByCarId($car->getCarId());
 
   </div>
 
-  <div class="row">
-    <h5 class="text-center my-3">Car Details</h5>
-    <ul class="list-unstyled">
-      <li><p class="col-4 p-0">Color</p><p class="col-4 offset-1"><?php echo $car->getCarColor(); ?></p></li>
-      <li><p class="col-4 p-0">Motor</p><p class="col-4 offset-1"><?php echo $model->getModelHorsePower(); ?></p></li>
-      <li><p class="col-4 p-0">Milage</p><p class="col-4 offset-1"><?php echo $car->getCarMilage(); ?></p></li>
-      <li><p class="col-4 p-0">Price</p><p class="col-4 offset-1"><?php echo $car->getCarPrice(); ?></p></li>
+  <div class="mt-4">
+    <h5>Car Details</h5>
+    <ul >
+      <li ><p class="col-4 p-0"></p><p class="col-4 offset-1 text-left"></p></li>
+      <li class="col-12"><p class="col-4 p-0"></p><p class="col-4 offset-1 text-left"></p></li>
+      <li class="col-12"><p class="col-4 p-0"></p><p class="col-4 offset-1 text-left"></p></li>
+      <li class="col-12"><p class="col-4 p-0"></p><p class="col-4 offset-1 text-left"></p></li>
     </ul>
+
+
+    <div class="table-responsive">
+      <table class="col-10 offset-1 table table-condensed">
+        <tr>
+          <td>Color</td>
+          <td><?php echo $car->getCarColor(); ?></td>
+        </tr>
+
+        <tr>
+          <td>Motor</td>
+          <td><?php echo $model->getModelHorsePower(); ?></td>
+        </tr>
+
+        <tr>
+          <td>Milage</td>
+          <td><?php echo $car->getCarMilage(); ?></td>
+        </tr>
+
+        <tr>
+          <td>Price</td>
+          <td><?php echo $car->getCarPrice(); ?></td>
+        </tr>
+      </table>
+    </div>
   </div>
 
-  <?php if(count($sidePictures) > 0) { ?>
 
-    <h3 class="my-4">Other pictures</h3>
-    <div class="row" style="background-color: rgba(255,255,255,0.85);">
 
-      <?php foreach ($sidePictures as $picture) { ?>
+<div id="myModal" class="modal">
+  <span class="close cursor" onclick="closeModal()">&times;</span>
+  <div class="modal-content">
 
-        <div class="col-sm-6 col-md-3 mb-4">
-          <img class="img-fluid" src="public/carPictures/<?php echo $picture->getPictureName(); ?> " alt="<?php echo $picture->getPictureDescription(); ?>">
-        </div>
+    <?php
+      $i = 1;
+      foreach ($sidePictures as $picture) {
+    ?>
+      <div class="mySlides col-12">
 
-      <?php } ?>
+        <img
+          class="col-8 offset-2"
+          src="public/carPictures/<?php echo $picture->getPictureName(); ?>"
+          alt="<?php echo $picture->getPictureDescription(); ?>">
+
+      </div>
+
+    <?php
+        $i++;
+      }
+    ?>
+
+    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+    <a class="next" onclick="plusSlides(1)">&#10095;</a>
+
+    <div class="caption-container">
+      <p id="caption"></p>
+    </div>
+
+    <div class="col-12 row">
+    <?php
+      $i = 1;
+      foreach ($sidePictures as $picture) {
+    ?>
+
+    <div class="col-4 m-0 p-0">
+      <img
+        class="demo cursor"
+        onclick="currentSlide(<?php echo $i; ?>)"
+        src="public/carPictures/<?php echo $picture->getPictureName(); ?>"
+        alt="<?php echo $picture->getPictureDescription(); ?>"
+        style="width:100%;">
+    </div>
+
+    <?php
+        $i++;
+      }
+    ?>
+  </div>
+
+  </div>
+</div>
+
+  <?php
+  if(count($sidePictures) > 0) {
+    $i = 1;
+    ?>
+
+    <h5 class="my-4">Other pictures</h5>
+    <div class="row">
+
+    <?php foreach ($sidePictures as $picture) { ?>
+
+      <div class="col-sm-6 col-md-3 mb-4 column">
+        <img
+        class="img-fluid hover-shadow cursor"
+        src="public/carPictures/<?php echo $picture->getPictureName(); ?>"
+        alt="<?php echo $picture->getPictureDescription(); ?>"
+        onclick="openModal();currentSlide(<?php echo $i; ?>)"
+        style="width:100%">
+      </div>
+
+      <?php
+      $i++;
+    }
+    ?>
 
       <button class="btn btn-primary col-10 offset-1 col-sm-2 offset-sm-9 ">Buy now !</button>
 
     </div>
-  <?php } else { ?>
-    <button class="btn btn-primary col-10 offset-1 col-sm-2 offset-sm-9 ">Buy now !</button>
-  <?php } ?>
+<?php } else { ?>
+  <button class="btn btn-primary col-10 offset-1 col-sm-2 offset-sm-9 ">Buy now !</button>
+<?php } ?>
 </div>
+
+<script src="assets/js/productDetailsModal.js" async defer></script>

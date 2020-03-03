@@ -123,26 +123,27 @@ class CarManager
     */
     public function getCarsWithFilter($filterArray)
     {
-      $nbArgs = len($filterArray);
+      $nbArgs = count($filterArray);
 
       switch ($nbArgs) {
         case 1:
-          $this->filterCarsByBrand($filterArray);
+          $req = $this->filterCarsByBrand($filterArray);
         break;
 
         case 2:
-          $this->filterCarsByModel($filterArray);
+          $req = $this->filterCarsByModel($filterArray);
         break;
 
         case 3:
-          $this->filterCarsByMilage($filterArray);
+          $req = $this->filterCarsByMilage($filterArray);
         break;
 
         default:
         // code...
         break;
       }
-      return filterCars($req);
+
+      return $this->filterCars($req);
     }
 
     public function filterCarsByBrand($filterArray) {

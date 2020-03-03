@@ -17,7 +17,7 @@
             <div class="carousel-item active" role="option">
                 <div class="jumbotron jumbotron-fluid carousel-hero carousel-item1">
                     <h1 class="hero-title">Dream cars</h1>
-                    <p class="hero-subtitle">
+                    <p class="border rounded-lg border-primary shadow-sm hero-subtitle bg-faded-custom">
                       We have the car you dreamed about when you were a kid.
                       <br>
                       Fully functional , you just have to get the keys.
@@ -27,9 +27,9 @@
             <div class="carousel-item" role="option">
                 <div class="jumbotron jumbotron-fluid carousel-hero carousel-item2">
                     <h1 class="hero-title">Collections</h1>
-                    <p class="hero-subtitle">
+                    <p class="border rounded-lg border-primary shadow-sm hero-subtitle bg-faded-custom">
                       Our vendors provide our garages with the most exclusive
-                      <br>
+                      <br />
                       cars that you cannot find in the market.
                     </p>
                 </div>
@@ -37,7 +37,9 @@
             <div class="carousel-item" role="option">
                 <div class="jumbotron jumbotron-fluid carousel-hero carousel-item3">
                     <h1 class="hero-title">Movies</h1>
-                    <p class="hero-subtitle">Our garage has the finest cars produced specially for movies.</p>
+                    <p class="border rounded-lg border-primary shadow-sm hero-subtitle bg-faded-custom">
+                      Our garage has the finest cars produced specially for movies.
+                    </p>
                 </div>
             </div>
         </div>

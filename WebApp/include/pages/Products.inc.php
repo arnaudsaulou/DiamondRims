@@ -1,4 +1,3 @@
-
 <h1 class="text-center text-white d-none d-lg-block site-heading">
   <span class="text-primary site-heading-upper mb-3" style="font-size: 65px;color: rgb(244,172,21);">
     <img src="assets/img/DiamondRimsLogo.svg" style="width: 83px;" alt="Diamond rims logo">
@@ -11,66 +10,83 @@
 
 <div class="container">
 
-  <div class="row light-search-bar">
-      <div class="col-sx-12">
-          <nav class="navbar navbar-light navbar-expand-md navigation-clean-search">
-              <div class="container">
-                  <div class="collapse navbar-collapse" id="navcol-1">
-                      <ul class="nav navbar-nav">
-                          <li role="presentation" class="nav-item">
-                            <select style="margin-right: 15px;">
-                              <optgroup label="Brand">
-                                <option value="1" selected>Abarth</option>
-                                <option value="13">This is item 2</option>
-                                <option value="14">This is item 3</option>
-                              </optgroup>
-                            </select>
-                          </li>
-                          <li role="presentation" class="nav-item">
-                            <select style="margin-right: 15px;">
-                              <optgroup label="Model">
-                                <option value="1" selected>124 Spider</option>
-                                <option value="13">This is item 2</option>
-                                <option value="14">This is item 3</option>
-                              </optgroup>
-                            </select>
-                          </li>
-                          <li role="presentation" class="nav-item">
-                            <select>
-                              <optgroup label="Milage">
-                                <option value="1" selected>0 - 1000 Km</option>
-                                <option value="13">This is item 2</option>
-                                <option value="14">This is item 3</option>
-                              </optgroup>
-                            </select>
-                          </li>
-                      </ul>
-                      <form class="form-inline ml-auto" target="_self" style="margin-right: 20px;">
-                          <div class="form-group">
-                            <label for="search-field">
-                              <i class="fa fa-search" style="filter: brightness(50%);"></i>
-                            </label>
-                            <input type="search" class="form-control search-field" id="search-field" name="search" style="filter: brightness(100%) contrast(100%);"/>
-                          </div>
-                      </form>
-                      <a class="btn btn-light action-button" role="button" href="#">
-                        Search
-                      </a>
-                    </div>
-              </div>
-          </nav>
-      </div>
-  </div>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Search</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse">
+      <form class="form-inline my-2 my-lg-0 col-12" action="#" method="post">
+
+        <ul class="navbar-nav mr-auto col-7">
+
+          <li class="nav-item">
+            <select class="nav-link" id="brandSelect" name="brandId" onchange="brandSelectListener();">
+              <optgroup label="Brand">
+                <option value="0">Toutes</option>
+                <?php foreach ($brandManager->getAllBrands() as $brand) { ?>
+                  <option value="<?php echo $brand->getBrandId(); ?>"
+                    <?php if(isset($_POST["brandId"]) && $brand->getBrandId() == $_POST["brandId"]) { ?> selected <?php } ?>>
+                    <?php echo $brand->getBrandName(); ?>
+                  </option>
+                <?php } ?>
+              </optgroup>
+            </select>
+          </li>
+
+          <li class="nav-item">
+            <select class="nav-link <?php if(!isset($_POST["modelId"])){ echo "d-none"; } ?>" id="modelSelect" name="modelId" onchange="modelSelectListener();">
+              <optgroup label="Model" id="modelGroup">
+                <option value="0">Tous</option>
+              </optgroup>
+            </select>
+          </li>
+
+          <li class="nav-item">
+            <select class="nav-link <?php if(!isset($_POST["milageRange"])){ echo "d-none"; } ?>" id="milageSelect" name="milageRange">
+              <optgroup label="Milage">
+                <option value="-1" <?php if($_POST["milageRange"] = -1){ echo "selected"; }?>>Indifférent</option>
+                <option value="0" <?php if($_POST["milageRange"] = 0){ echo "selected"; }?>>Neuf</option>
+                <option value="100" <?php if($_POST["milageRange"] = 100){ echo "selected"; }?>>< 100 km</option>
+                <option value="1000" <?php if($_POST["milageRange"] = 1000){ echo "selected"; }?>>< 1000 km</option>
+                <option value="10000" <?php if($_POST["milageRange"] = 10000){ echo "selected"; }?>>< 10000 km</option>
+              </optgroup>
+            </select>
+          </li>
+        </ul>
+
+        <input class="form-control mr-sm-2 col-3" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0 col-1" type="submit">Search</button>
+      </form>
+    </div>
+  </nav>
 
   <div class="row product-list dev">
 
     <?php
-    $carList = $carManager->getAllCars();
+
+    if(isset($_POST["brandId"]) && $_POST["brandId"] != 0){
+      if(isset($_POST["modelId"]) && $_POST["modelId"] != 0){
+        if(isset($_POST["milageRange"]) && $_POST["milageRange"] != -1){
+          $filterArray = array($_POST["brandId"],$_POST["modelId"],$_POST["milageRange"]);
+          $carList = $carManager->getCarsWithFilter($filterArray);
+        } else {
+          $filterArray = array($_POST["brandId"],$_POST["modelId"]);
+          $carList = $carManager->getCarsWithFilter($filterArray);
+        }
+      } else{
+        $filterArray = array($_POST["brandId"]);
+        $carList = $carManager->getCarsWithFilter($filterArray);
+      }
+    } else {
+      $carList = $carManager->getAllCars();
+    }
+
     foreach ($carList as $car) {
       $model = $modelManager->getModelById($car->getModelId());
       $brand = $brandManager->getBrandById($model->getBrandId());
       $picture = $pictureManager->getMainPictureByCarId($car->getCarId());
-
       ?>
 
       <div class="col-sm-6 col-md-4 product-item animation-element slide-top-left">
@@ -97,12 +113,12 @@
             <div class="col-12">
               <p class="product-description">
                 <?php
-                  $description = $car->getCarDescription();
-                  if(strlen($description) > 255){
-                    echo substr($description, 0, 255), "...";
-                  } else {
-                    echo $description;
-                  }
+                $description = $car->getCarDescription();
+                if(strlen($description) > 255){
+                  echo substr($description, 0, 255), "...";
+                } else {
+                  echo $description;
+                }
 
                 ?>
               </p>
@@ -121,7 +137,15 @@
         </div>
       </div>
       <?php
-        }
-      ?>
+    }
+    ?>
   </div>
 </div>
+
+<!-- TODO -->
+<?php if(isset($_POST["brandId"])){ ?>
+  <script type="text/javascript"> brandSelectListener(); </script>
+<?php } ?>
+
+
+<script src="assets/js/productSearchBar.js" async defer></script>
