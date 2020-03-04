@@ -189,6 +189,37 @@ p.hero-subtitle{
   border-radius: 5px;
 }
 
+
+/* Manage */
+
+.crudIcon{
+  width: 40px;
+  height: 40px;
+}
+
+.manageBackground{
+  background-color: #ffffff;
+}
+
+.button5 {
+  padding: 0px;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+}
+
+.button5 h1 {
+  margin: 0px;
+}
+
+.row .card-body{
+  padding: 0px;
+}
+
+.picturesPicker div {
+  height: auto;
+}
+
 /* Product details */
 
 .list-unstyled li p {
