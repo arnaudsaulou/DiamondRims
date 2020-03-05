@@ -37,3 +37,11 @@ function showSlides(n) {
   dots[slideIndex-1].className += " active";
   captionText.innerHTML = dots[slideIndex-1].alt;
 }
+
+/* Product detail -  Contactus */
+
+function buyNow(){
+  if (window.confirm("Please contact us to make this deal !")) {
+    window.location.href = "./index?page=2"
+  }
+}

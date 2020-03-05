@@ -142,12 +142,12 @@ $sidePictures = $pictureManager->getPicturesByCarId($car->getCarId());
     }
     ?>
 
-      <button class="btn btn-primary col-10 offset-1 col-sm-2 offset-sm-9 ">Buy now !</button>
+      <button class="btn btn-primary col-10 offset-1 col-sm-2 offset-sm-9" onclick="buyNow();">Buy now !</button>
 
     </div>
 <?php } else { ?>
-  <button class="btn btn-primary col-10 offset-1 col-sm-2 offset-sm-9 ">Buy now !</button>
+  <button class="btn btn-primary col-10 offset-1 col-sm-2 offset-sm-9 " onclick="buyNow();">Buy now !</button>
 <?php } ?>
 </div>
 
-<script src="assets/js/productDetailsModal.js" async defer></script>
+<script src="assets/js/productDetails.js" async defer></script>

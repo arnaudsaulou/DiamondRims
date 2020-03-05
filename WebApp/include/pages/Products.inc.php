@@ -12,7 +12,7 @@
 
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="#">Search</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
@@ -26,8 +26,7 @@
               <optgroup label="Brand">
                 <option value="0">Toutes</option>
                 <?php foreach ($brandManager->getAllBrands() as $brand) { ?>
-                  <option value="<?php echo $brand->getBrandId(); ?>"
-                    <?php if(isset($_POST["brandId"]) && $brand->getBrandId() == $_POST["brandId"]) { ?> selected <?php } ?>>
+                  <option value="<?php echo $brand->getBrandId(); ?>" <?php if(isset($_POST["brandId"]) && $brand->getBrandId() == $_POST["brandId"]) { ?> selected <?php } ?>>
                     <?php echo $brand->getBrandName(); ?>
                   </option>
                 <?php } ?>
@@ -46,18 +45,17 @@
           <li class="nav-item">
             <select class="nav-link <?php if(!isset($_POST["milageRange"])){ echo "d-none"; } ?>" id="milageSelect" name="milageRange">
               <optgroup label="Milage">
-                <option value="-1" <?php if($_POST["milageRange"] = -1){ echo "selected"; }?>>Indifférent</option>
-                <option value="0" <?php if($_POST["milageRange"] = 0){ echo "selected"; }?>>Neuf</option>
-                <option value="100" <?php if($_POST["milageRange"] = 100){ echo "selected"; }?>>< 100 km</option>
-                <option value="1000" <?php if($_POST["milageRange"] = 1000){ echo "selected"; }?>>< 1000 km</option>
-                <option value="10000" <?php if($_POST["milageRange"] = 10000){ echo "selected"; }?>>< 10000 km</option>
+                <option value="-1" <?php if(isset($_POST["milageRange"]) && $_POST["milageRange"] == -1){ echo "selected"; }?>>Indifférent</option>
+                <option value="0" <?php if(isset($_POST["milageRange"]) && $_POST["milageRange"] == 0){ echo "selected"; }?>>Neuf</option>
+                <option value="100" <?php if(isset($_POST["milageRange"]) && $_POST["milageRange"] == 100){ echo "selected"; }?>>&lt; 100 km</option>
+                <option value="1000" <?php if(isset($_POST["milageRange"]) && $_POST["milageRange"] == 1000){ echo "selected"; }?>>&lt; 1000 km</option>
+                <option value="10000" <?php if(isset($_POST["milageRange"]) && $_POST["milageRange"] == 10000){ echo "selected"; }?>>&lt; 10000 km</option>
               </optgroup>
             </select>
           </li>
         </ul>
 
-        <input class="form-control mr-sm-2 col-3" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0 col-1" type="submit">Search</button>
+        <button class="btn btn-outline-success my-2 my-sm-0 col-1 offset-3" type="submit">Search</button>
       </form>
     </div>
   </nav>
@@ -148,4 +146,4 @@
 <?php } ?>
 
 
-<script src="assets/js/productSearchBar.js" async defer></script>
+<script src="assets/js/products.js" async defer></script>

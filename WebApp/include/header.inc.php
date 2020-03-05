@@ -17,16 +17,16 @@
     <link rel="apple-touch-icon" href="assets/icon/AppleDiamondRimsLogo.svg">
 
     <!-- Reset CSS -->
-    <link rel="stylesheet" type="text/css" href="assets/css/resetStyle.css" async preloadlien>
+    <link rel="stylesheet" type="text/css" href="assets/css/resetStyle.css">
 
     <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="assets/css/bootstrap.css" async preloadlien>
+    <link rel="stylesheet" href="assets/css/bootstrap.css">
 
     <!-- Ressources -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <!-- Custom styles for this template -->
-    <link rel="stylesheet" href="assets/css/styles.css" async preloadlien>
+    <link rel="stylesheet" href="assets/css/styles.css">
 
 </head>
 
