@@ -1,4 +1,4 @@
-  <footer class="footer text-faded text-center py-5" style="background-color: #454545;">
+  <footer class="footer text-faded text-center py-5">
       <div class="input-group">
           <div class="input-group-prepend"></div>
           <div class="input-group-append"></div>

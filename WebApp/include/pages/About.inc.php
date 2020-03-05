@@ -1,10 +1,10 @@
 <h1 class="text-center text-white d-none d-lg-block site-heading">
-  <span class="text-primary site-heading-upper mb-3" style="font-size: 65px;color: rgb(244,172,21);">
-    <img src="assets/img/DiamondRimsLogo.svg" style="width: 83px;" alt="Diamond rims logo">
+  <span class="text-primary site-heading-upper mb-3">
+    <img src="assets/img/DiamondRimsLogo.svg" class="diamondRimsLogo" alt="Diamond rims logo">
     &nbsp;DIAMOND RIMS&nbsp;
   </span>
-  <span class="site-heading-lower" style="font-size: 41px;">
-    DIAMOND IS ETERNAL.<br>SO IS OUR CRAFTMANSHIP.<br>
+  <span class="site-heading-lower">
+    DIAMOND ARE ETERNAL.<br>SO IS OUR CRAFTMANSHIP.<br>
   </span>
 </h1>
 <section class="page-section about-heading">

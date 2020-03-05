@@ -1,6 +1,6 @@
 <h1 class="text-center text-white d-none d-lg-block site-heading">
-  <span class="text-primary site-heading-upper mb-3" style="font-size: 65px;color: rgb(244,172,21);">
-    <img src="assets/img/DiamondRimsLogo.svg" style="width: 83px;">
+  <span class="text-primary site-heading-upper mb-3">
+    <img src="assets/img/DiamondRimsLogo.svg" class="diamondRimsLogo">
     &nbsp;DIAMOND RIMS&nbsp;
   </span>
 </h1>
@@ -102,11 +102,10 @@ $sidePictures = $pictureManager->getPicturesByCarId($car->getCarId());
 
     <div class="col-4 m-0 p-0">
       <img
-        class="demo cursor"
+        class="demo cursor thumbtail"
         onclick="currentSlide(<?php echo $i; ?>)"
         src="public/carPictures/<?php echo $picture->getPictureName(); ?>"
-        alt="<?php echo $picture->getPictureDescription(); ?>"
-        style="width:100%;">
+        alt="<?php echo $picture->getPictureDescription(); ?>">
     </div>
 
     <?php
@@ -130,11 +129,10 @@ $sidePictures = $pictureManager->getPicturesByCarId($car->getCarId());
 
       <div class="col-sm-6 col-md-3 mb-4 column">
         <img
-        class="img-fluid hover-shadow cursor"
+        class="img-fluid hover-shadow cursor thumbtail"
         src="public/carPictures/<?php echo $picture->getPictureName(); ?>"
         alt="<?php echo $picture->getPictureDescription(); ?>"
-        onclick="openModal();currentSlide(<?php echo $i; ?>)"
-        style="width:100%">
+        onclick="openModal();currentSlide(<?php echo $i; ?>)">
       </div>
 
       <?php

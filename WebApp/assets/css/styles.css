@@ -220,7 +220,15 @@ p.hero-subtitle{
   height: auto;
 }
 
+.fill{
+  background-color: rgba(230,167,86,0.9);
+}
+
 /* Product details */
+
+.thumbtail{
+  width: 100%;
+}
 
 .list-unstyled li p {
   display: inline;
@@ -334,7 +342,46 @@ img.hover-shadow {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
+/* Login */
+
+.loginLogo{
+  width: 45px;
+}
+
+.fa-hourglass{
+  color: green;
+}
+
+.fa-exclamation-triangle{
+  color:red;
+}
+
+/* Bootstarp Override */
+
+.text-primary{
+  font-size: 35px;
+  color: rgb(244,172,21);
+}
+
+.diamondRimsLogo{
+  width: 83px;
+}
+
+.site-heading-upper{
+  font-size: 65px;
+  color: rgb(244,172,21);
+}
+
+.site-heading-lower{
+  font-size: 41px;
+}
+
 /* Footer */
+
+.footer {
+  background-color: #454547;
+}
+
 footer .small{
   color: white;
 }

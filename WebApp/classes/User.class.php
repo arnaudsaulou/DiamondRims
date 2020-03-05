@@ -125,7 +125,7 @@ class User {
   * @return string Le mot de passe une fois hashé et chiffré.
   */
   function hashPassword($password){
-    return password_hash($password, PASSWORD_ARGON2I);
+    return password_hash(($password . SALT), PASSWORD_ARGON2I);
   }
 
   /**
@@ -135,7 +135,8 @@ class User {
   */
   public function checkPassword($plainPassword)
   {
-    return password_verify($plainPassword, $this->getUserPassword());
+    return password_verify(($plainPassword . SALT), $this->getUserPassword());
   }
+
 }
 ?>

@@ -1,8 +1,8 @@
 <h1 class="text-center text-white d-none d-lg-block site-heading">
-  <span class="text-primary site-heading-upper mb-3" style="font-size: 65px;color: rgb(244,172,21);">
-    <img src="assets/img/DiamondRimsLogo.svg" alt="Diamond Rims logo" style="width: 83px;" /> DIAMOND RIMS </span>
+  <span class="text-primary site-heading-upper mb-3">
+    <img src="assets/img/DiamondRimsLogo.svg" alt="Diamond Rims logo" class="diamondRimsLogo"/> DIAMOND RIMS </span>
   </h1>
-  <div class="float-left col-md-2 p-3 fill" style="background-color: rgba(230,167,86,0.9);">
+  <div class="float-left col-md-2 p-3 fill">
 
     <form class="mb-2" action="index.php?page=4&option=0" method="post">
       <button class="btn btn-dark col-md-10 offset-md-1" type="submit">BRANDS</button>

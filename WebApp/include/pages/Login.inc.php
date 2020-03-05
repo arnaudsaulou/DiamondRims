@@ -5,7 +5,7 @@ if (empty($_POST)){
 
     <div class="col col-md-4 offset-md-4 bg-light mt-3 mb-3 card-body">
       <div class="text-center">
-        <i class="fa fa-hourglass" style="color:green"></i>
+        <i class="fa fa-hourglass"></i>
         <span class="text-center">
           <h4>Vous êtes déjà connecté, vous allez être redirigé dans 1 secondes !</h4>
         </span>
@@ -23,8 +23,8 @@ if (empty($_POST)){
     ?>
 
     <h1 class="text-center text-white d-none d-lg-block site-heading site-heading-connection">
-      <span class="text-primary" style="font-size: 35px;color: rgb(244,172,21);">
-        <img src="assets/img/DiamondRimsLogo.svg" style="width: 45px;" />
+      <span class="text-primary">
+        <img src="assets/img/DiamondRimsLogo.svg" alt="Diamond Rims Logo" class="loginLogo" />
         DIAMOND RIMS
       </span>
     </h1>
@@ -43,13 +43,13 @@ if (empty($_POST)){
               </h2>
               <form action="#" method="post">
                 <div class="form-row">
-                  <div class="col" style="max-width: 50%;margin: auto;">
+                  <div class="col-6 offset-3">
                     <input type="text" class="form-control" placeholder="Username" name="username" />
-                    <input type="password" class="form-control" style="margin-top: 20px;" placeholder="Password" name="password"/>
+                    <input type="password" class="form-control mt-3" placeholder="Password" name="password"/>
                   </div>
                 </div>
 
-                <button class="btn btn-primary" type="submit" style="margin-top: 20px;">
+                <button class="btn btn-primary mt-4" type="submit">
                   Start the experience
                 </button>
 
@@ -65,6 +65,7 @@ if (empty($_POST)){
 } else {
 
   $user = $userManager->getUserByUsername($_POST['username']);
+
   if($user != null){
     if($user -> checkPassword($_POST['password'])){
 
@@ -74,7 +75,7 @@ if (empty($_POST)){
 
       <div class="col col-md-4 offset-md-4 bg-light mt-3 mb-3 card-body">
         <div class="text-center">
-          <i class="fa fa-hourglass" style="color:green"></i>
+          <i class="fa fa-hourglass"></i>
           <span class="text-center">
             <h4>Connexion réussie !</h4>
           </span>
@@ -92,7 +93,7 @@ if (empty($_POST)){
 ?>
       <div class="col col-md-4 offset-md-4 bg-light mt-3 mb-3 card-body">
         <div class="text-center">
-          <i class="fa fa-exclamation-triangle" style="color:red"></i>
+          <i class="fa fa-exclamation-triangle"></i>
           <span class=" text-center">
             <h4>Incorrect <br/> username or password</h4>
           </span>
@@ -110,7 +111,7 @@ if (empty($_POST)){
 
     <div class="col col-md-4 offset-md-4 bg-light mt-3 mb-3 card-body">
       <div class="text-center">
-        <i class="fa fa-exclamation-triangle" style="color:red"></i>
+        <i class="fa fa-exclamation-triangle"></i>
         <span class=" text-center">
           <h4>Incorrect <br/> username or password</h4>
         </span>
