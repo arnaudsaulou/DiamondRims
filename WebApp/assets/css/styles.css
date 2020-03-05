@@ -376,6 +376,11 @@ img.hover-shadow {
   font-size: 41px;
 }
 
+.specialButton{
+  background-color: #454547;
+  color: white;
+}
+
 /* Footer */
 
 .footer {

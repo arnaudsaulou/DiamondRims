@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  mer. 05 fév. 2020 à 16:32
+-- Généré le :  jeu. 05 mars 2020 à 10:55
 -- Version du serveur :  10.4.10-MariaDB
 -- Version de PHP :  7.3.12
 
@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS `brand` (
   `BRAND_NAME` varchar(50) NOT NULL,
   `BRAND_DESCRIPTION` text NOT NULL,
   PRIMARY KEY (`BRAND_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `brand`
@@ -62,6 +62,15 @@ INSERT INTO `brand` (`BRAND_ID`, `BRAND_NAME`, `BRAND_DESCRIPTION`) VALUES
 (19, 'Shelby ', 'Shelby-American Inc. est une marque et ancienne écurie automobile américaine fondée par l\'ancien pilote Carroll Shelby spécialisé dans la modification de modèles Ford et en particulier de la Ford Mustang (équivalent de la concession Abarth pour exemple). La marque deviendra célèbre à partir de 1962 avec l\'AC Cobra, un dérivé musclé de la petite anglaise AC Bristol, et finira d\'asseoir sa notoriété grandissante avec la Shelby GT 350 ainsi que la Shelby GT 500, faisant de son nom une légende. '),
 (20, 'Tesla ', 'Tesla, Inc., initialement appelé Tesla Motors jusqu\'au 1er février 20173, est un constructeur automobile de voitures électriques dont le siège social se situe à Palo Alto, en Californie, dans la Silicon Valley, aux États-Unis. L\'entreprise a été fondée en 2003 par Martin Eberhard et Marc Tarpenning et son personnage principal ainsi qu\'actuel patron est Elon Musk. Elle tient son nom de l\'inventeur Nikola Tesla. La mission de Tesla est « d’accélérer la transition mondiale vers un schéma énergétique durable »4, notamment en stimulant la compétitivité automobile dans le secteur électrique. La marque se distingue par les performances ainsi que le nombre de technologies embarquées de ses véhicules (pilotage automatique, mode de défense contre les armes biochimiques, etc.). La berline familiale Model S est actuellement le véhicule électrique de production à l\'accélération la plus rapide au monde. ');
 
+--
+-- Déclencheurs `brand`
+--
+DROP TRIGGER IF EXISTS `DELTE_MODEL_TRIGGER`;
+DELIMITER $$
+CREATE TRIGGER `DELTE_MODEL_TRIGGER` BEFORE DELETE ON `brand` FOR EACH ROW DELETE FROM model WHERE BRAND_ID = OLD.BRAND_ID
+$$
+DELIMITER ;
+
 -- --------------------------------------------------------
 
 --
@@ -74,11 +83,43 @@ CREATE TABLE IF NOT EXISTS `car` (
   `CAR_MILAGE` int(11) NOT NULL,
   `CAR_COLOR` varchar(50) NOT NULL,
   `CAR_PRICE` int(11) NOT NULL,
-  `DESCRIPTION` text NOT NULL,
+  `CAR_DESCRIPTION` text NOT NULL,
   `MODEL_ID` int(11) NOT NULL,
   PRIMARY KEY (`CAR_ID`),
   KEY `Car_Model_FK` (`MODEL_ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `car`
+--
+
+INSERT INTO `car` (`CAR_ID`, `CAR_MILAGE`, `CAR_COLOR`, `CAR_PRICE`, `CAR_DESCRIPTION`, `MODEL_ID`) VALUES
+(26, 12000, 'Red', 99000, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 3),
+(27, 16, 'Grey', 129000, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 4),
+(28, 540, 'Gold', 350000, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 28),
+(29, 15000, 'Black - Gold', 246000, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 10),
+(30, 25000, 'Yellow', 0, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 14),
+(31, 1200, 'Black', 195000, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 5),
+(32, 25000, 'Blue', 160000, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 9),
+(33, 2555, 'Orange', 199000, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 30),
+(34, 14, 'Too much', 220000, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 11),
+(35, 49000, 'Red', 666000, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 12),
+(36, 0, 'Purple', 235000, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 13),
+(37, 37809, 'Black', 46000, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 51),
+(38, 69000, 'Blue', 110000, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 50),
+(39, 0, 'Red', 20000, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 52),
+(40, 12000, 'Orange', 80000, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 15),
+(41, 53000, 'Black', 0, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 16),
+(42, 16000, 'Yellow', 216000, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 6);
+
+--
+-- Déclencheurs `car`
+--
+DROP TRIGGER IF EXISTS `DELETE_PICTURES_TRIGGER`;
+DELIMITER $$
+CREATE TRIGGER `DELETE_PICTURES_TRIGGER` BEFORE DELETE ON `car` FOR EACH ROW DELETE FROM picture WHERE CAR_ID = OLD.CAR_ID
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -95,7 +136,7 @@ CREATE TABLE IF NOT EXISTS `model` (
   `BRAND_ID` int(11) NOT NULL,
   PRIMARY KEY (`MODEL_ID`),
   KEY `Model_Brand_FK` (`BRAND_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=53 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=60 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `model`
@@ -103,11 +144,10 @@ CREATE TABLE IF NOT EXISTS `model` (
 
 INSERT INTO `model` (`MODEL_ID`, `MODEL_NAME`, `MODEL_HORSE_POWER`, `MODEL_DESCRIPTION`, `BRAND_ID`) VALUES
 (1, '124 Spider', 170, 'La Fiat 124 Spider est un roadster produit par Fiat, à partir du projet commun développé avec le constructeur japonais Mazda. Elle partage sa plateforme avec la Mazda MX-5 mais dispose d\'une carrosserie et de motorisations spécifiques1. Elle a été présentée en avant première le 18 novembre 20152 puis officiellement au Salon de Los Angeles en novembre 20153 et est lancée de juillet 2016 à fin 2019. Sa ligne s\'inspire de celle de son ancêtre, la Fiat 124 Sport Spider de 1966. ', 1),
-(2, '695', 180, 'Il s\'agit d\'une série spéciale, créée dans le seul but d\'évoquer la glorieuse élaboration extrême de la fameuse Fiat 500 Abarth des années 1950 appelée « 695 ». Chaque exemplaire de cette fuoriserie doit être réservée on-line sur le site officiel dans la section spéciale Abarth Specialties. Les caractéristiques pariculières de ce modèle sont : moteur Fiat 1.4 Turbo T-Jet dont la puissance a été portée à 180 ch à 5 750 tr/min équipé d\'un turbocompresseur Garrett GT 1446, injecteurs spécifiques, système d\'échappement à quatre terminaux Record Monza (regroupés en deux terminaux sur l\'Edizione Maserati qui prennent le nom de Record Modena), freins Brembo avec disques ventilés augmentés : ø 305 × 28 mm à l\'avant et ø 264 × 22 mm à l\'arrière, suspensions Koni avec soupape FSD, commandes de boîte de vitesses robotisée MTA au volant, jantes en alliage de 17\" et pneumatiques Pirelli PZero 205/40. L\'habitacle reçoit des habillages en matériaux de haute qualité dont la fibre de carbone. ', 1),
 (3, '8C Competizione', 450, 'L\'Alfa Romeo 8C Competizione est une voiture de sport produite par le constructeur automobile italien Alfa Romeo. Elle a d\'abord été présentée en 2003 comme un concept car au salon de l\'automobile de Francfort puis à Paris en 2006 en tant que modèle destiné à la vente pour 2007. ', 2),
 (4, 'A110', 292, 'L\'A110 est un coupé sportif du constructeur automobile français Alpine, présenté en mars 2017, pour une commercialisation en mars 2018. Il marque la renaissance de la marque Alpine (propriété de Renault), plus de 60 ans après sa création en 1955, et plus de 20 ans après sa disparition en 1995. L\'A110 est la seconde génération d\'Alpine à porter ce nom.', 3),
 (5, 'DB11', 639, 'L\'Aston Martin DB11 est une automobile Grand Tourisme Coupé et Cabriolet 2+2 de la marque britannique Aston Martin. Elle est présentée au salon international de l\'automobile de Genève 20161 dans sa version coupé et en octobre 2017 pour la version Volante (cabriolet). ', 4),
-(6, 'Vantage GT8', 446, 'En 2016, Aston Martin lance une édition spéciale de sa V8 Vantage. Appelée GT8, c\'est une série spéciale limitée à 150 exemplaires. De par l\'utilisation de titane, de fibre de carbone et de polycarbonate, le poids de l\'engin baisse de 100 kg. Concernant le moteur, sa cylindrée n\'évolue pas mais sa puissance passe à 446 ch soit une hausse de 10 ch. ', 4),
+(6, 'Vantage', 503, 'Vantage is raw and instinctive, unwavering in its singular purpose: to overwhelm the senses through its world-renowned design, agile performance and dedicated craftsmanship. Its heart beats with a high powered 4.0 litre twin-turbocharged V8, producing that visceral Aston Martin roar. A rare breed and a statement of independence on the road, Vantage embodies all that is beautiful in our performance sports car range. ', 4),
 (7, 'Vanquish ', 570, 'La Vanquish utilise une version améliorée du moteur V12 issu de l\'assemblage de deux V6 de Ford Mondeo (datant du moment où Aston Martin appartenait à Ford) avec une puissance de 573 ch à 6 750 tr/min et un couple de 620 N·m à 5 500 tr/min. La Vanquish utilise une boîte de vitesses automatique à six rapports. Les freins sont des disques en carbone-céramique. La suspension est un sous cadre léger avant en aluminium avec moulages creux à double levier triangulé indépendante incorporant la géométrie anti-plongée, ressorts hélicoïdaux, barre anti-roulis et amortisseurs monotube adaptatifs à l\'avant et double triangulation indépendants avec anti-squat et la géométrie anti-soulèvement, ressorts hélicoïdaux, barre antiroulis et amortisseurs adaptatifs monotube à l\'arrière. Il dispose d\'un système d\'amortissement réglable en trois étapes adaptatif comprenant les modes normal, sport et course.', 4),
 (8, 'One-77', 750, 'L’Aston Martin One-77 est une supercar développée par le constructeur automobile britannique Aston Martin. Dans un premier temps dénommée Aston Martin BDX, elle opte finalement pour le nom de One-77, lors de sa présentation, plutôt discrète, au Mondial de l\'automobile de Paris 2008. Seulement 77 exemplaires seront produits, d\'où l\'origine du nom1. L’Aston Martin One-77 a été commercialisée depuis fin 2009. ', 4),
 (9, 'Continental GT', 650, 'La Bentley Continental GT est un coupé de luxe présenté en 2002 au Mondial de l\'automobile de Paris. Commercialisée l\'année suivante, il s\'agit de la première Bentley de l\'ère Volkswagen, se situant dans une gamme inférieure à celle de la Continental. Ce mastodonte de plus de 2,3 tonnes est mû par un moteur W12 de 6 L de cylindrée. Une version restylée (phase II) est commercialisée à partir de 2012. Après 66 000 exemplaires vendus dans le monde1, elle est remplacée en 2017 par la Bentley Continental GT II. ', 5),
@@ -155,6 +195,15 @@ INSERT INTO `model` (`MODEL_ID`, `MODEL_NAME`, `MODEL_HORSE_POWER`, `MODEL_DESCR
 (51, 'Model 3', 462, 'La Tesla Model 3 est une berline familiale haut de gamme et 100 % électrique, conçue et produite par le constructeur automobile américain Tesla, Inc. Présentée au public le 31 mars 2016, les 30 premières livraisons ont eu lieu le 28 juillet 2017 aux États-Unis. Il s\'agit du quatrième modèle de voiture commercialisé par Tesla, après la Tesla Model X. Avec son autonomie supérieure à 500 km, la Model 3 est l\'une des voitures électriques les plus performantes au monde. ', 20),
 (52, 'Roadster', 1500, 'The Tesla Roadster is an upcoming all-electric battery-powered four-seater sports car made by Tesla, Inc.[1] Tesla has said it will be capable of 0 to 97 km/h (0 to 60 mph) in 1.9 seconds,[2] quicker than any street legal production car to date at its announcement in November 2017. The Roadster is the successor to Tesla\'s first production car, which was the 2008 Roadster.\r\n\r\nTesla indicates that Roadster sales will begin in 2020, although not before the Tesla Model Y goes on sale. Tesla CEO Elon Musk has said that higher-performance trim levels will be available beyond the base specifications, including a model with about 10 cold gas thrusters.', 20);
 
+--
+-- Déclencheurs `model`
+--
+DROP TRIGGER IF EXISTS `DELETE_CAR_TRIGGER`;
+DELIMITER $$
+CREATE TRIGGER `DELETE_CAR_TRIGGER` BEFORE DELETE ON `model` FOR EACH ROW DELETE FROM car WHERE MODEL_ID = OLD.MODEL_ID
+$$
+DELIMITER ;
+
 -- --------------------------------------------------------
 
 --
@@ -163,13 +212,95 @@ INSERT INTO `model` (`MODEL_ID`, `MODEL_NAME`, `MODEL_HORSE_POWER`, `MODEL_DESCR
 
 DROP TABLE IF EXISTS `picture`;
 CREATE TABLE IF NOT EXISTS `picture` (
-  `PICTURE_ID` varchar(50) NOT NULL,
+  `PICTURE_ID` int(11) NOT NULL AUTO_INCREMENT,
   `PICTURE_NUM` int(11) NOT NULL,
-  `PICTURE_DESCTIPTION` text NOT NULL,
+  `PICTURE_NAME` varchar(50) NOT NULL,
+  `PICTURE_DESCRIPTION` text NOT NULL,
   `CAR_ID` int(11) NOT NULL,
-  PRIMARY KEY (`PICTURE_ID`),
+  PRIMARY KEY (`PICTURE_ID`) USING BTREE,
   KEY `PICTURE_Car_FK` (`CAR_ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=84 DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `picture`
+--
+
+INSERT INTO `picture` (`PICTURE_ID`, `PICTURE_NUM`, `PICTURE_NAME`, `PICTURE_DESCRIPTION`, `CAR_ID`) VALUES
+(24, 0, '4C_3.webp', 'Alfa Romeo 4C 1', 26),
+(25, 1, '4C_4.webp', 'Alfa Romeo 4C 2', 26),
+(26, 2, '4C_5.webp', 'Alfa Romeo 4C 3', 26),
+(28, 0, 'ALPINE_4.webp', 'Alpine A110S 1', 27),
+(29, 1, 'ALPINE_9.webp', 'Alpine A110S 2', 27),
+(30, 2, 'ALPINE_1.webp', 'Alpine A110S 3', 27),
+(31, 3, 'ALPINE_7.webp', 'Alpine A110S 1', 27),
+(33, 0, 'AVENTADOR_1.webp', 'Lamborghini Aventador 1', 28),
+(34, 1, 'AVENTADOR_5.webp', 'Lamborghini Aventador 2', 28),
+(35, 2, 'AVENTADOR_2.webp', 'Lamborghini Aventador 3', 28),
+(36, 3, 'AVENTADOR_7.webp', 'Lamborghini Aventador 4', 28),
+(37, 0, 'BENTAYGA_1.webp', 'Bentley Bentayga 1', 29),
+(38, 1, 'BENTAYGA_4.webp', 'Bentley Bentayga 2', 29),
+(39, 2, 'BENTAYGA_5.webp', 'Bentley Bentayga 3', 29),
+(40, 0, 'C7R_2.webp', 'Corvette C7R 1', 30),
+(41, 1, 'C7R_3.webp', 'Corvette C7R 2', 30),
+(42, 2, 'C7R_1.webp', 'Corvette C7R 3', 30),
+(43, 3, 'C7R_4.webp', 'Corvette C7R 4', 30),
+(44, 0, 'DB11_1.webp', 'Aston Martin DB11 1', 31),
+(45, 1, 'DB11_2.webp', 'Aston Martin DB11 2', 31),
+(46, 0, 'GT_2.webp', 'Bentley Continental GT 1', 32),
+(47, 1, 'GT_1.webp', 'Bentley Continental GT 2', 32),
+(48, 0, 'HURACAN_3.webp', 'Lamborghini Huracan 1', 33),
+(49, 1, 'HURACAN_10.webp', 'Lamborghini Huracan 2', 33),
+(50, 2, 'HURACAN_7.webp', 'Lamborghini Huracan 3', 33),
+(51, 0, 'i8_5.webp', 'BMX I8 1', 34),
+(52, 1, 'i8_1.webp', 'BMX I8 2', 34),
+(53, 2, 'i8_3.webp', 'BMX I8 3', 34),
+(54, 3, 'i8_4.webp', 'BMX I8 4', 34),
+(55, 0, 'M4.webp', 'BMW M4 1', 35),
+(56, 0, 'M8_5.webp', 'BMW M8 Grand coupe 1', 36),
+(57, 1, 'M8_4.webp', 'BMW M8 Grand coupe 2', 36),
+(58, 2, 'M8_1.webp', 'BMW M8 Grand coupe 3', 36),
+(59, 3, 'M8_2.webp', 'BMW M8 Grand coupe 4', 36),
+(60, 0, 'MODEL3_1.webp', 'Tesla Model 3 1', 37),
+(61, 1, 'MODEL3_2.webp', 'Tesla Model 3 2', 37),
+(62, 0, 'MODELS_1.webp', 'Tesla Model S 1', 38),
+(63, 1, 'MODELS_5.webp', 'Tesla Model S 2', 38),
+(64, 2, 'MODELS_4.webp', 'Tesla Model S 3', 38),
+(65, 0, 'ROASTER_1.webp', 'Tesla Roadster 1', 39),
+(66, 1, 'ROASTER_2.webp', 'Tesla Roadster 2', 39),
+(67, 2, 'ROASTER_4.webp', 'Tesla Roadster 3', 39),
+(68, 0, 'STING_1.webp', 'Corvette C8 1', 40),
+(69, 1, 'STING_2.webp', 'Corvette C8 2', 40),
+(70, 2, 'STING_4.webp', 'Corvette C8 3', 40),
+(75, 0, 'VANTAGE_3.webp', 'Aston Martin Vantage 1', 42),
+(76, 1, 'VANTAGE_3.webp', 'Aston Martin Vantage 2', 42),
+(77, 2, 'VANTAGE_6.webp', 'Aston Martin Vantage 3', 42),
+(78, 3, 'VANTAGE_5.webp', 'Aston Martin Vantage 4', 42),
+(80, 0, 'ZR1_3.webp', 'Corvette ZR1 1', 41),
+(81, 1, 'ZR1_4.webp', 'Corvette ZR1 2', 41),
+(82, 2, 'ZR1_5.webp', 'Corvette ZR1 3', 41),
+(83, 3, 'ZR1_5.webp', 'Corvette ZR1 4', 41);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `user`
+--
+
+DROP TABLE IF EXISTS `user`;
+CREATE TABLE IF NOT EXISTS `user` (
+  `USER_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `USER_USERNAME` varchar(50) NOT NULL,
+  `USER_PASSWORD` varchar(256) NOT NULL,
+  `USER_NAME` varchar(50) NOT NULL,
+  PRIMARY KEY (`USER_ID`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `user`
+--
+
+INSERT INTO `user` (`USER_ID`, `USER_USERNAME`, `USER_PASSWORD`, `USER_NAME`) VALUES
+(1, 'DiamondRimsAdmin', '$argon2i$v=19$m=65536,t=4,p=1$Zi5USnlqdk9KT2UzSU1QUw$gMIsOGjE9o9ArYDZ12nS2Y4rwc3mnisyZDHpc+/gCOk', 'ADMIN');
 
 --
 -- Contraintes pour les tables déchargées

@@ -11,7 +11,7 @@ $car = $carManager->getCarById($_GET["id"]);
 $model = $modelManager->getModelById($car->getModelId());
 $brand = $brandManager->getBrandById($model->getBrandId());
 $mainPicture = $pictureManager->getMainPictureByCarId($car->getCarId());
-$sidePictures = $pictureManager->getPicturesByCarId($car->getCarId());
+$sidePictures = $pictureManager->getSidesPicturesByCarId($car->getCarId());
 
 ?>
 
@@ -23,7 +23,7 @@ $sidePictures = $pictureManager->getPicturesByCarId($car->getCarId());
     </div>
     <div class="col-md-4">
       <h5 class="text-center my-3">Car Description</h5>
-      <p><?php echo $car->getCarDescription(); ?></p>
+      <p class="text-justify mt-2 mt-lg-5"><?php echo $car->getCarDescription(); ?></p>
     </div>
 
   </div>
@@ -57,7 +57,7 @@ $sidePictures = $pictureManager->getPicturesByCarId($car->getCarId());
 
         <tr>
           <td>Price</td>
-          <td><?php echo $car->getCarPrice(); ?></td>
+          <td><?php if($car->getCarPrice() != 0) { echo $car->getCarPrice(); } else { echo "P.O.R"; } ?></td>
         </tr>
       </table>
     </div>

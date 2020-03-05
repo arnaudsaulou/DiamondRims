@@ -160,7 +160,7 @@ if(isset($_GET['action'])){
         <div class="form-group py-2">
           <label for="mainPictureInput">Main picture</label>
           <div class="form-control py-1" id="mainPictureInput">
-            <input name="pictureNames[]" type="file" accept=".jpg" required/>
+            <input name="pictureNames[]" type="file" accept=".webp" required/>
             <input class="form-control" name="pictureDescriptions[]" type="text"
             placeholder="Please enter a description for this picture"
             required/>
@@ -172,19 +172,19 @@ if(isset($_GET['action'])){
           <div class="form-control" id="sidePictureInput">
 
             <div class="form-control py-2 mb-2 mt-2" id="sidePictureInput">
-              <input name="pictureNames[]" type="file" accept=".jpg"/>
+              <input name="pictureNames[]" type="file" accept=".webp"/>
               <input  class="form-control" name="pictureDescriptions[]" type="text"
               placeholder="Please enter a description for this picture"/>
             </div>
 
             <div class="form-control py-2 mb-2 mt-2" id="sidePictureInput">
-              <input name="pictureNames[]" type="file" accept=".jpg"/>
+              <input name="pictureNames[]" type="file" accept=".webp"/>
               <input  class="form-control" name="pictureDescriptions[]" type="text"
               placeholder="Please enter a description for this picture"/>
             </div>
 
             <div class="form-control py-2 mb-2 mt-2" id="sidePictureInput">
-              <input name="pictureNames[]" type="file" accept=".jpg"/>
+              <input name="pictureNames[]" type="file" accept=".webp"/>
               <input  class="form-control" name="pictureDescriptions[]" type="text"
               placeholder="Please enter a description for this picture"/>
             </div>
@@ -262,14 +262,14 @@ if(isset($_GET['action'])){
       </div>
 
       <?php
-        $pictureList = $pictureManager->getPicturesByCarId($car->getCarId());
+        $pictureList = $pictureManager->getAllPicturesByCarId($car->getCarId());
       ?>
 
       <div class="picturesPicker">
         <div class="form-group py-2">
           <label for="mainPictureInput">Main picture</label>
           <div class="form-control py-1" id="mainPictureInput">
-            <input name="pictureNames[]" type="file" accept=".jpg"
+            <input name="pictureNames[]" type="file" accept=".webp"
             required/>
             <input class="form-control" name="pictureDescriptions[]" type="text"
             placeholder="Please enter a description for this picture"
@@ -283,21 +283,21 @@ if(isset($_GET['action'])){
           <div class="form-control" id="sidePictureInput">
 
             <div class="form-control py-2 mb-2 mt-2" id="sidePictureInput">
-              <input name="pictureNames[]" type="file" accept=".jpg"/>
+              <input name="pictureNames[]" type="file" accept=".webp"/>
               <input  class="form-control" name="pictureDescriptions[]" type="text"
               value="<?php if(count($pictureList) > 1){ echo $pictureList[1]->getPictureDescription();} ?>"
               placeholder="Please enter a description for this picture"/>
             </div>
 
             <div class="form-control py-2 mb-2 mt-2" id="sidePictureInput">
-              <input name="pictureNames[]" type="file" accept=".jpg"/>
+              <input name="pictureNames[]" type="file" accept=".webp"/>
               <input  class="form-control" name="pictureDescriptions[]" type="text"
               value="<?php if(count($pictureList) > 2){ echo $pictureList[2]->getPictureDescription();} ?>"
               placeholder="Please enter a description for this picture"/>
             </div>
 
             <div class="form-control py-2 mb-2 mt-2" id="sidePictureInput">
-              <input name="pictureNames[]" type="file" accept=".jpg"/>
+              <input name="pictureNames[]" type="file" accept=".webp"/>
               <input  class="form-control" name="pictureDescriptions[]" type="text"
               value="<?php if(count($pictureList) > 3){ echo $pictureList[3]->getPictureDescription();} ?>"
               placeholder="Please enter a description for this picture"/>

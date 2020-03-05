@@ -127,7 +127,11 @@
                   </form>
                 </div>
                 <div class="col-6">
+                  <?php if($car->getCarPrice() != 0){ ?>
                   <p class="product-price">$<?php echo $car->getCarPrice(); ?> </p>
+                <?php } else { ?>
+                  <p class="product-price">P.O.R</p>
+                  <?php } ?>
                 </div>
               </div>
             </div>
